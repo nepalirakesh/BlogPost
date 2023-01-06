@@ -9,11 +9,7 @@
 <body>
 
 
-@include('bloglayout.sidebar')
 
-
-
-@include('bloglayout.nav')
 
 
 
