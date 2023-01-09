@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,24 @@ Route::get('/dashboard',function () {
 Route::get('/',function () {
     return view('home');
 })->name('home');
+
+
+//view for author 
+//Route::view('author','blog/author/index');
+Route::view('create','blog/author/create');
+Route::get('author',[AuthorController::class,'show']);
+Route::post('store',[AuthorController::class,'store'])->name('store');
+
+//edit for author
+Route::get('edit/{id}',[AuthorController::class,'edit'])->name('edit');
+Route::PATCH('update/{id}',[AuthorController::class,'update'])->name('update');
+
+//delete for author
+Route::DELETE('delete/{id}',[AuthorController::class,'destroy'])->name('delete');
+
+
+
+
 
 
 
