@@ -3,7 +3,7 @@
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
       <img src="{{asset('dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">AdminLTE 3</span>
+      <span class="brand-text font-weight-light">BlogPost</span>
     </a>
 
     <!-- Sidebar -->
@@ -14,7 +14,7 @@
           <img src="{{asset('dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">John Doe</a>
+          <a href="#" class="d-block">{{Auth::user()->name}}</a>
         </div>
       </div>
 
@@ -123,28 +123,41 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
-
                 <li class="nav-item">
-                <a href="./index3.html" class="nav-link">
+                    <a href="{{route('category.index')}}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>List Category</p>
+                    </a>
+                  </li>
+                <li class="nav-item">
+                <a href="{{route('category.create')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Create Category</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="./index3.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Edit Category</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="./index3.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Delete Category</p>
-                </a>
-              </li>
+
 
             </ul>
           </li>
+
+            <br>
+            <ul class="nav navbar">
+            <li class="nav-item">
+                <form action="{{route('logout')}}" method="POST">
+                @csrf
+                <button type="submit" class="btn btn-sm btn-danger">
+                    Logout
+
+                </button>
+
+
+                </form>
+
+              </li>
+          </ul>
+
+
+
 
 
 
