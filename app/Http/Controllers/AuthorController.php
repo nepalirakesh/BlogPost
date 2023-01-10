@@ -29,13 +29,13 @@ class AuthorController extends Controller
        {
         $file = $request->file('image');
         $filename = $file->getClientOriginalName();
-        $file->move(public_path('public/images'), $filename);
+        $file->storeAs(('public/images'), $filename);
         $author->image = $filename;
        }
         $author->description = $request->description;
         $author->save();
         
-        echo "success";
+        return redirect('author')->with('success','Author Created Successfully');
     }
 
 
@@ -65,7 +65,7 @@ class AuthorController extends Controller
        {
         $file = $request->file('image');
         $filename = $file->getClientOriginalName();
-        $file->move(public_path('public/images'), $filename);
+        $file->storeAs(('public/images'), $filename);
         $author->image = $filename;
        }
        
@@ -73,14 +73,14 @@ class AuthorController extends Controller
         $author->description = $request->description;
         $author->save();
 
-        return redirect('author');
+        return redirect('author')->with('update','Author Updated Successfully');
     }
 
     //For deleting an author
     public function destroy($id)
     {
         Author::find($id)->delete();
-        return redirect('author');
+        return redirect('author')->with('delete','Author Deleted Successfully');
     }
 
 

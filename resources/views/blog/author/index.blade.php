@@ -1,45 +1,19 @@
-@extends('bloglayout.master')
+@extends('dashboard')
+
+@section('content')
 
 <style>
     .pagination{
         justify-content: center;
     }
 </style>
-<center>
-    <div class="title">
-     <h1><p>Posts</p></h1>
-    
-    </div>
-    
-    @if (session('created'))
-    <div class="alert alert-success">
-     {{ session('created') }}
-
-    </div>
-    @endif
-    @if (session('deleted'))
-    <div class="alert alert-danger">
-     {{ session('deleted') }}
-
-    </div>
-    @endif
-    @if (session('updated'))
-    <div class="alert alert-success">
-     {{ session('updated') }}
-
-    </div>
-    @endif
-    </center>
-    
-
-    
-    
+@include('bloglayout.crudmessage')
 <center>
  <div class="table">
  <table class="table-hover" >
      
      <tr>
-         <th>Id</th>
+         <th>S.N</th>
          <th>Name</th>
          <th>Image</th>
          <th>Description</th>
@@ -48,26 +22,23 @@
      </tr>
          @foreach($authors as $author)
          <tr>
-          <td>{{$author['id']}}</td>
+          <td>{{++$i}}</td>
          <td>{{$author['name']}}</td>
-         <td> <img src="{{ url('public/images/'.$author->image) }}" style="height: 100px; width: 150px;"></td>
+         <td> <img src="{{ url('storage/images/'.$author->image) }}" style="height: 100px; width: 150px;"></td>
          <td>{{$author['description']}}</td>
          
          <td>
              <div style="display:flex;flex-direction:row; ">
              <a class="btn btn-primary"  href="edit/{{ $author['id']}}"> Edit </a>
            
-         <form action="{{route('delete',$author->id)}}" method="POST">
+         <form action="{{route('author.delete',$author->id)}}" method="POST">
            @csrf    
            @method('DELETE')
             <button type="submit" class="btn btn-danger"> Delete </button>
         </form> 
 
              </div>
-        
-             
-            
-         </td>
+        </td>
          </tr>
 
          
@@ -81,3 +52,5 @@
 
  
 </center>
+
+@endsection

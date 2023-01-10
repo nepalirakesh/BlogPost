@@ -1,4 +1,6 @@
-@extends('bloglayout.master')
+@extends('dashboard')
+
+@section('content')
 <style>
     .form{
           margin: auto;
@@ -15,7 +17,7 @@
 </style>
     <center><h1>Edit</h1></center>
     
-    <form method="Post" action="{{route('update',$authors->id)}}" enctype="multipart/form-data">  
+    <form method="Post" action="{{route('author.update',$authors->id)}}" enctype="multipart/form-data">  
     @method('PATCH')     
      @csrf     
               <div class="form-group">      
@@ -45,4 +47,5 @@
       
         <button type="submit" class="btn btn-primary">Update</button>
       </div>
-    </form>  
+    </form> 
+    @endsection 

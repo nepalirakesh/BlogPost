@@ -1,4 +1,6 @@
-@extends('bloglayout.master')
+@extends('dashboard')
+
+@section('content')
 
 <style>
       .form{
@@ -18,7 +20,7 @@
 
 <div class="form-group">
 
-<form action="{{ route('store') }}" method="POST" enctype="multipart/form-data">
+<form action="{{ route('author.store') }}" method="POST" enctype="multipart/form-data">
 {{csrf_field()}}
    
     <label >Name</label><br>
@@ -35,3 +37,5 @@
     
 </form>
 </div>
+
+@endsection

@@ -27,19 +27,22 @@ Route::get('/',function () {
 
 
 
-//view for author 
-//Route::view('author','blog/author/index');
-Route::view('create','blog/author/create');
-Route::get('author',[AuthorController::class,'show']);
-Route::post('store',[AuthorController::class,'store'])->name('store');
+// ----------------Routes for Author------------------------------
+
+Route::group(['middleware'=>'auth'],function(){
+Route::get('author',[AuthorController::class,'show'])->name('author.index');
+
+//create new author
+Route::view('create','blog/author/create')->name('author.create');
+Route::post('store',[AuthorController::class,'store'])->name('author.store');
 
 //edit for author
-Route::get('edit/{id}',[AuthorController::class,'edit'])->name('edit');
-Route::PATCH('update/{id}',[AuthorController::class,'update'])->name('update');
+Route::get('edit/{id}',[AuthorController::class,'edit'])->name('author.edit');
+Route::PATCH('update/{id}',[AuthorController::class,'update'])->name('author.update');
 
 //delete for author
-Route::DELETE('delete/{id}',[AuthorController::class,'destroy'])->name('delete');
-
+Route::DELETE('delete/{id}',[AuthorController::class,'destroy'])->name('author.delete');
+});
 
 
 // ----------------Routes for category------------------------------

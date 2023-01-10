@@ -24,9 +24,9 @@ class AuthorRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' =>'required|alpha|max:30',
+            'name' =>'required|alpha|unique:authors|max:30',
             'image'=>'required',
-            'description' =>'required|max:300',
+            'description' =>'required|max:300|min:10',
         ];
     }
 
@@ -34,7 +34,7 @@ class AuthorRequest extends FormRequest
             return [
                 'name.required' => 'Name is required',
                 'name.alpha' => 'Name must be string',
-                'name.max' => 'name longer than required',
+                'name.max' => 'Name longer than required',
                 'image.required' => 'Image is required',
                 'description.required' => 'Description is required',
             ];
