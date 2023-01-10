@@ -13,7 +13,7 @@
 
 
 
-@yield('content')
+@yield('dashboard')
 
 @include('bloglayout.footer')
   </body>
