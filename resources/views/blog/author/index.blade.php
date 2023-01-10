@@ -1,4 +1,10 @@
 @extends('bloglayout.master')
+
+<style>
+    .pagination{
+        justify-content: center;
+    }
+</style>
 <center>
     <div class="title">
      <h1><p>Posts</p></h1>
@@ -67,9 +73,11 @@
          
          @endforeach 
  </table>
+      </div>
  
 
  </div>
+ {!! $authors->links('pagination::bootstrap-4') !!}
 
  
 </center>
