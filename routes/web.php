@@ -2,7 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ImageController;
+use App\Http\Controllers\PostController;
 use App\Models\Category;
+use App\Models\Image;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +40,20 @@ Route::group(['prefix'=>'category','middleware'=>'auth'],function(){
     Route::delete('/delete/{category}',[CategoryController::class,'delete'])->name('category.delete');
 });
 
+
+
+
+
+// .........................Routes for post..................
+
+route::group(['prefix'=>'post','middleware'=>'auth'],function(){
+    route::get('/',[PostController::class,'index'])->name('post.index');
+    route::get('/create',[PostController::class,'create'])->name('post.create');
+    route::post('/store',[PostController::class,'store'])->name('post.store');
+    route::get('/edit/{post}',[PostController::class,'edit'])->name('post.edit');
+    route::put('/update/{post}',[PostController::class,'update'])->name('post.update');
+    route::delete('/delete/{post}',[PostController::class,'delete'])->name('post.delete');
+});
 
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
