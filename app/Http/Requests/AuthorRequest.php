@@ -25,7 +25,7 @@ class AuthorRequest extends FormRequest
     {
         return [
             'name' =>'required|alpha|unique:authors|max:30',
-            'image'=>'required',
+            'image'=>'required|mimes:jpeg,jpg,png,gif',
             'description' =>'required|max:300|min:10',
         ];
     }

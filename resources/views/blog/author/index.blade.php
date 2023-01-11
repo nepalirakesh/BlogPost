@@ -24,7 +24,7 @@
          <tr>
           <td>{{++$i}}</td>
          <td>{{$author['name']}}</td>
-         <td> <img src="{{ url('storage/images/'.$author->image) }}" style="height: 100px; width: 150px;"></td>
+         <td> <img src="{{ asset('storage/images/'.$author->image) }}" style="height: 100px; width: 100px;"></td>
          <td>{{$author['description']}}</td>
          
          <td>

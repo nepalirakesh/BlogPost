@@ -11,7 +11,7 @@ class AuthorController extends Controller
     //For Index or Viewing
     public function show()
     {   
-        $authors = Author::paginate(5);
+        $authors = Author::paginate(4);
         
         return view('blog/author/index',compact('authors'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
@@ -60,7 +60,8 @@ class AuthorController extends Controller
         ]);
         $author = Author::find($id);
         $author->name = $request->name;
-        
+
+        //Images upload 
         if($request->file('image'))
        {
         $file = $request->file('image');
