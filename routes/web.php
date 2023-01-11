@@ -40,3 +40,8 @@ Route::group(['prefix'=>'category','middleware'=>'auth'],function(){
 
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+//Route for frontend
+Route::view('frontend','frontend');
+Route::view('test','test');
