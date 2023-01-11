@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -15,11 +16,11 @@
                         </a>
                         <ul class="dropdown-menu">
                           <!-- dropdown menu links -->
-                          <li><a tabindex="-1" href="#">Space</a></li>
-                          <li><a tabindex="-1" href="#">Science</a></li>
-                          <li><a tabindex="-1" href="#">Nature</a></li>
-                          <li><a tabindex="-1" href="#">Politics</a></li>
-                          <li><a tabindex="-1" href="#">Sports</a></li>
+                          <li class="dropdown-item">Space</a></li>
+                          <li class="dropdown-item">Science</a></li>
+                          <li class="dropdown-item">Nature</a></li>
+                          <li class="dropdown-item">Politics</a></li>
+                          <li class="dropdown-item">Sports</a></li>
                         </ul>
                       </div>
                 </div>
@@ -81,3 +82,4 @@
     </div>
 </div>
 @endsection
+
