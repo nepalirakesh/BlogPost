@@ -35,16 +35,16 @@
             <ul class="nav nav-treeview">
 
                 <li class="nav-item">
-                <a href="./index3.html" class="nav-link">
+                <a href="{{route('author.index')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Create Author</p>
+                  <p>List Author</p>
                 </a>
               </li>
 
               <li class="nav-item">
-                <a href="./index3.html" class="nav-link">
+                <a href="{{route('author.create')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Delete Author</p>
+                  <p>Create Author</p>
                 </a>
               </li>
             </ul>

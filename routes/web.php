@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\PostController;
@@ -28,6 +29,25 @@ Route::get('/',function () {
 })->name('home');
 
 
+
+// ----------------Routes for Author------------------------------
+
+Route::group(['middleware'=>'auth'],function(){
+Route::get('author',[AuthorController::class,'show'])->name('author.index');
+
+//create new author
+Route::view('create','blog/author/create')->name('author.create');
+Route::post('store',[AuthorController::class,'store'])->name('author.store');
+
+//edit for author
+Route::get('edit/{id}',[AuthorController::class,'edit'])->name('author.edit');
+Route::PATCH('update/{id}',[AuthorController::class,'update'])->name('author.update');
+
+//delete for author
+Route::DELETE('delete/{id}',[AuthorController::class,'destroy'])->name('author.delete');
+});
+
+
 // ----------------Routes for category------------------------------
 
 Route::group(['prefix'=>'category','middleware'=>'auth'],function(){
@@ -39,10 +59,6 @@ Route::group(['prefix'=>'category','middleware'=>'auth'],function(){
     Route::put('/update/{category}',[CategoryController::class,'update'])->name('category.update');
     Route::delete('/delete/{category}',[CategoryController::class,'delete'])->name('category.delete');
 });
-
-
-
-
 
 // .........................Routes for post..................
 
