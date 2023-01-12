@@ -12,8 +12,8 @@ use App\Models\Category;
 class PostController extends Controller
 {
     public function index(){
-        $posts=Post::all();
-        return view('blog.post.index',compact('posts'));
+        $posts=Post::Paginate(4);
+        return view('blog.post.index',compact('posts'))->with('i', (request()->input('page', 1) - 1) * 5);
 
     }
 
@@ -50,27 +50,61 @@ class PostController extends Controller
         $post->save();
         $post->tag()->attach($request->tags);
    
-        return redirect()->route('post.index'); 
+        return redirect()->route('post.index')->with('success','post added successfully'); 
     
- }
+    }    
+
+    public function show(Post $post){
+
+        return view('blog.post.show',compact('post'));
+    }
 
 
 
 
     public function edit(Post $post){
-        
-        $categores=Category::all();
+
+        $categories=Category::all();
         $tags=Tag::all();
-        $author=Author::all();
-        return view('blog.post.edit',compact('post','categories','tags','author'));
+        $authors=Author::all();
+        return view('blog.post.edit',compact('post','categories','tags','authors'));
 
     }
 
-    public function update(Post $post, Request $request){
+    public function update(Post $post, PostRequest $request){
 
-    }
+        $data = $request->validated();
+
+        if($request->hasFile('image')){
+            $file=$request->file('image');
+            $filename=$file->getClientOriginalName();
+            $file->storeAs('public/images/',$filename);
+            $post->image=$filename;
+        }
+
+        $post->author_id = $data['author'];
+        $post->title = $data['title'];
+        $post->description = $data['description'];
+        $post->content = $data['content'];
+        $post->category_id = $data['category'];
+
+
+        $post->save();
+        $post->tag()->sync($request->tags);
+        // dd($request->all());
+       
+        return redirect()->route('post.index')->with('update','post updated successfully');
+
+        }
+
+
+
+    
 
     public function delete(Post $post){
+
+        $post->delete();
+        return redirect()->route('post.index')->with('delete','post deleted successfully');
 
     }
 }

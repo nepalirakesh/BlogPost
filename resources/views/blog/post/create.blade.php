@@ -54,7 +54,16 @@
             </select>
 
           </div>
-
+          {{-- <div class="form-group">
+            <select class="form-control" name="tags[]" multiple="multiple">
+              @foreach($tags as $tag)
+              <option style="color:black"value="{{$tag->id}}">{{$tag->title}}</option>
+          @endforeach
+            </select>
+          </div> --}}
+        
+         
+        
 
         @csrf
         <button type="submit" class="btn btn-primary">Submit</button>

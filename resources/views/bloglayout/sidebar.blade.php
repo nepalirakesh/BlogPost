@@ -59,25 +59,20 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
-
+              <li class="nav-item">
+                <a href={{route('post.index')}} class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>List Post</p>
+                </a>
+              </li>
                 <li class="nav-item">
-                <a href="./index3.html" class="nav-link">
+                <a href={{route('post.create')}} class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Create Post</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="./index3.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Edit Post</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="./index3.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Delete Post</p>
-                </a>
-              </li>
+        
+            
 
             </ul>
           </li>

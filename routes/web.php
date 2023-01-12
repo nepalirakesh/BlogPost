@@ -48,8 +48,9 @@ Route::group(['prefix'=>'category','middleware'=>'auth'],function(){
 
 route::group(['prefix'=>'post','middleware'=>'auth'],function(){
     route::get('/',[PostController::class,'index'])->name('post.index');
-    route::get('/create',[PostController::class,'create'])->name('post.create');
+    route::get('/create',[PostController::class,'create'])->name('post.create'); 
     route::post('/store',[PostController::class,'store'])->name('post.store');
+    route::get('/show/{post}',[PostController::class,'show'])->name('post.show');
     route::get('/edit/{post}',[PostController::class,'edit'])->name('post.edit');
     route::put('/update/{post}',[PostController::class,'update'])->name('post.update');
     route::delete('/delete/{post}',[PostController::class,'delete'])->name('post.delete');
