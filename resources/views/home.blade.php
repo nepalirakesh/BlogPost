@@ -37,7 +37,7 @@
                           <div class="card-body">
                            <b> <h3 >Card title</h3></b>
                             <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                            <a href="{{route('test')}}" class="btn btn-primary">Learn More</a>
                           </div>
                           <div class="card-footer" style="display: flex; align-items: center">
                                 <div class="image">
@@ -51,7 +51,7 @@
                           <div class="card-body">
                            <b> <h3 >Card title</h3></b>
                             <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                            <a href="{{route('test')}}" class="btn btn-primary">Learn More</a>
                           </div>
                           <div class="card-footer" style="display: flex; align-items: center">
                                 <div class="image">
@@ -65,7 +65,7 @@
                           <div class="card-body">
                            <b> <h3 >Card title</h3></b>
                             <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                            <a href="{{route('test')}}" class="btn btn-primary">Learn More</a>
                           </div>
                           <div class="card-footer" style="display: flex; align-items: center">
                                 <div class="image">

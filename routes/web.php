@@ -44,4 +44,4 @@ Route::group(['prefix'=>'category','middleware'=>'auth'],function(){
 
 //Route for frontend
 Route::view('frontend','frontend');
-Route::view('test','test');
+Route::view('test','test')->name('test');
