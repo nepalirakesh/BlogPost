@@ -10,7 +10,7 @@ class CategoryController extends Controller
     public function index(){
 
 
-        $categories= Category::simplePaginate(4);
+        $categories= Category::Paginate(4);
         return view('blog.category.index',compact('categories'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -18,7 +18,7 @@ class CategoryController extends Controller
     public function show(Category $category){
 
         return view('blog.category.show',compact('category'));
-// return view('blog.category.show');
+
 
     }
 

@@ -12,7 +12,6 @@
           <tr>
             <th scope="col" width="10%">SN</th>
             <th scope="col">Title</th>
-            <th scope="col">Description</th>
             <th scope="col">Action</th>
           </tr>
         </thead>
@@ -22,7 +21,6 @@
 
             <td style="text-align:center">{{++$i}}</td>
             <td>{{$category->title}}</td>
-            <td>{{Str::limit($category->description,10)}}</td>
 
             <td>
                 <form action="{{route('category.delete',$category)}}" method="POST">
@@ -39,7 +37,10 @@
           @endforeach
         </tbody>
       </table>
-      {!!$categories->links()!!}
+      <ul class="pagination justify-content-center">
+        {!!$categories->links('pagination::bootstrap-4')!!}
+
+      </ul>
 </div>
 
 
