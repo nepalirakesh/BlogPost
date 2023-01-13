@@ -6,26 +6,24 @@
         <div class="col-md-8"style="display: flex; justify-content:space-between">
             <div class="card">
                 <div class="card-header">
-                    <h3>Post Title</h3>
+                    <h3>{{ucfirst($posts->title)}}</h3>
+
                 </div>
                 <center>
-                    <img src="{{asset('dist/img/blog.jpg')}}" class="card-img-top" style="height:auto;width:80%;" alt="...">
+                    <img src="{{asset('storage/images/'.$posts->image)}}" class="card-img-top" style="height:auto;width:80%;" alt="...">
                 </center>
                 <div class="card-body">
-                    
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas
-                     et ad tenetur adipisci minus quisquam magnam perferendis unde impedit 
-                     consectetur obcaecati facilis, quaerat recusandae sequi! Dicta obcaecati 
-                     quidem eum maxime.</p>
-                </div> 
-              
+
+                    <p>{{$posts->description}}</p>
+                </div>
+
                 <div class="card-footer" style="display: flex; align-items: center">
                     <div class="image">
-                      <img src="{{asset('dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" style="height:35px;width:35px;" alt="User Image">
+                      <img src="{{asset('storage/images/'.$posts->author->image)}}" class="img-circle elevation-2" style="height:35px;width:35px;" alt="User Image">
+                      <p class="font-italic">{{$posts->author->name}}</p>
                     </div>
-                     <p style="margin:0px; margin-left:30px">{{Auth::user()->name}}</p>
+                     <p style="margin:0px; margin-left:30px">{{$posts->description}}</p>
                 </div>
-                    
 
 
             </div>
@@ -34,7 +32,7 @@
                 <div class="card-body text-secondary">
                   <h5 class="card-title">Secondary card title</h5>
                   <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                </div> 
+                </div>
         </div>
     </div>
 </div>

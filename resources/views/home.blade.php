@@ -31,13 +31,16 @@
                             {{ session('status') }}
                         </div>
                     @endif
+                    @foreach ( $posts as $post)
+
+
                     <div class="card-deck">
                         <div class="card">
                             <img src="{{asset('dist/img/blog.jpg')}}" style="width:100%;height:18rem;" alt="...">
                           <div class="card-body">
                            <b> <h3 >Card title</h3></b>
                             <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                            <a href="{{route('test')}}" class="btn btn-primary">Learn More</a>
+                            <a href="{{route('test',$post->id)}}" class="btn btn-primary">Learn More</a>
                           </div>
                           <div class="card-footer" style="display: flex; align-items: center">
                                 <div class="image">
@@ -46,12 +49,13 @@
                                  <p style="margin:0px; margin-left:30px">{{Auth::user()->name}}</p>
                               </div>
                         </div>
-                        <div class="card">
+                           @endforeach
+                        {{-- <div class="card">
                           <img src="{{asset('dist/img/space.jpg')}}" style="width:100%;height:18rem;" alt="...">
                           <div class="card-body">
                            <b> <h3 >Card title</h3></b>
                             <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-                            <a href="{{route('test')}}" class="btn btn-primary">Learn More</a>
+                            <a href="{{url('test-post/{id}')}}" class="btn btn-primary">Learn More</a>
                           </div>
                           <div class="card-footer" style="display: flex; align-items: center">
                                 <div class="image">
@@ -65,7 +69,7 @@
                           <div class="card-body">
                            <b> <h3 >Card title</h3></b>
                             <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-                            <a href="{{route('test')}}" class="btn btn-primary">Learn More</a>
+                            <a href="{{url('test-post/{id}')}}" class="btn btn-primary">Learn More</a>
                           </div>
                           <div class="card-footer" style="display: flex; align-items: center">
                                 <div class="image">
@@ -73,7 +77,7 @@
                                 </div>
                                  <p style="margin:0px; margin-left:30px">{{Auth::user()->name}}</p>
                               </div>
-                        </div>
+                        </div> --}}
                       </div>
 
 

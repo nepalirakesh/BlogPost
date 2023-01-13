@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\IndexController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\CategoryController;
@@ -64,7 +65,7 @@ Route::group(['prefix'=>'category','middleware'=>'auth'],function(){
 
 route::group(['prefix'=>'post','middleware'=>'auth'],function(){
     route::get('/',[PostController::class,'index'])->name('post.index');
-    route::get('/create',[PostController::class,'create'])->name('post.create'); 
+    route::get('/create',[PostController::class,'create'])->name('post.create');
     route::post('/store',[PostController::class,'store'])->name('post.store');
     route::get('/show/{post}',[PostController::class,'show'])->name('post.show');
     route::get('/edit/{post}',[PostController::class,'edit'])->name('post.edit');
@@ -77,5 +78,8 @@ route::group(['prefix'=>'post','middleware'=>'auth'],function(){
 
 
 //Route for frontend
-Route::view('frontend','frontend');
-Route::view('test','test')->name('test');
+// Route::view('frontend','home');
+// Route::view('test','test')->name('test');
+Route::get('frontend', [IndexController::class, 'index']);
+Route::get('test-post/{id}', [IndexController::class, 'singlePostShow'])->name('test');
+
