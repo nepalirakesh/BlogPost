@@ -6,7 +6,9 @@
         <div class="col-md-8"style="display: flex; justify-content:space-between">
             <div class="card">
                 <div class="card-header">
+                    <a href="{{url('frontend/')}}" type="button" class="btn btn-primary btn-sm float-right">Back</a>
                     <h3>{{ucfirst($posts->title)}}</h3>
+
 
                 </div>
                 <center>
@@ -27,13 +29,15 @@
 
 
             </div>
-            <div class="card border-secondary mb-3" style="max-width: 18rem;margin-left:20px;">
+            {{-- <div class="card border-secondary mb-3" style="max-width: 18rem;margin-left:20px;">
                 <div class="card-header">Recent Posts</div>
                 <div class="card-body text-secondary">
                   <h5 class="card-title">Secondary card title</h5>
                   <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                 </div>
-        </div>
+        </div> --}}
+
     </div>
+
 </div>
 @endsection

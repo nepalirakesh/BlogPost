@@ -21,6 +21,8 @@ class IndexController extends Controller
 
 
         $posts = Post::find($id);
+        $latest_post = Post::latest()->first();
+
 
 
         // $categories = Category::all();
@@ -28,7 +30,7 @@ class IndexController extends Controller
         // $authors = Author::all();
 
 
-        return view('test', compact('posts'));
+        return view('test', compact(['posts', 'latest_post']));
 
     }
 
