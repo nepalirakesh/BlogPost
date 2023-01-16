@@ -9,9 +9,12 @@ use App\Models\Author;
 use App\Models\Tag;
 use App\Models\Category;
 use Illuminate\Contracts\View\View;
+use App\Traits\ImageUpload;
+
 
 class PostController extends Controller
 {
+    use ImageUpload;
     /**
      * @return View
      */
@@ -22,7 +25,7 @@ class PostController extends Controller
     }
 
     /**
-     * 
+     *
      */
     public function create(): View
     {
@@ -49,10 +52,7 @@ class PostController extends Controller
         $post->category_id = $data['category'];
 
         if ($request->hasFile('image')) {
-            $file = $request->file('image');
-            $filename = $file->getClientOriginalName();
-            $file->storeAs('public/images/', $filename);
-            $post->image = $filename;
+            $post->image = $this->uploadImage($request->file('image'));
         }
 
         $post->save();
