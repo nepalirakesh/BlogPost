@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\IndexController;
 use App\Models\Category;
 use App\Models\Image;
 
@@ -24,9 +25,10 @@ Route::get('/dashboard',function () {
 })->middleware('auth');
 
 
-Route::get('/',function () {
-    return view('home');
-})->name('home');
+Route::get('/',[IndexController::class,'showFrontend'])->name('home');
+
+//Category post
+Route::get('home.cat/{id}',[IndexController::class,'getCategory'])->name('home.cat');
 
 
 
@@ -77,5 +79,5 @@ route::group(['prefix'=>'post','middleware'=>'auth'],function(){
 
 
 //Route for frontend
-Route::view('frontend','frontend');
-Route::view('test','test')->name('test');
+Route::view('test','test');
+

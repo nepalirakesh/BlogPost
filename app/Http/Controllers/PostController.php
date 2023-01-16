@@ -13,7 +13,7 @@ class PostController extends Controller
 {
     public function index(){
         $posts=Post::Paginate(4);
-        return view('blog.post.index',compact('posts'))->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('blog.post.index',compact('posts'));
 
     }
 
@@ -102,9 +102,8 @@ class PostController extends Controller
     
 
     public function delete(Post $post){
-
         $post->delete();
         return redirect()->route('post.index')->with('delete','post deleted successfully');
-
     }
+ 
 }

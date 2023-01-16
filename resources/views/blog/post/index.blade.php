@@ -21,6 +21,7 @@
           </tr>
         </thead>
         <tbody>
+          <p>{{$i=0}}</p>
           @foreach($posts as $post)
             <tr>
                 <td style="text-align:center">{{++$i}}</td>
@@ -52,7 +53,6 @@
       
         <ul class="pagination justify-content-center">
           {!!$posts->links('pagination::bootstrap-4')!!}
-
         </ul>
 </div>
 @endsection

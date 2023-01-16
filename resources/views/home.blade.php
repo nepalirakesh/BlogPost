@@ -10,17 +10,15 @@
                     <div>
                     <h3>Welcome to BlogPost</h3></div>
                     <div class="btn-group" style="margin-left:40em;">
-                        <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-                          Categories
-                          <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
+                      <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Category
+                      </button>
+                        <ul class="dropdown-menu" id="category" name="category">
                           <!-- dropdown menu links -->
-                          <li class="dropdown-item">Space</a></li>
-                          <li class="dropdown-item">Science</a></li>
-                          <li class="dropdown-item">Nature</a></li>
-                          <li class="dropdown-item">Politics</a></li>
-                          <li class="dropdown-item">Sports</a></li>
+                          @foreach($categories as $category)
+                          <li class="dropdown-item"><a href="{{route('home.cat',$category['id'])}}" style="color:black;">{{$category->title}}</a></li>
+                          @endforeach
+              
                         </ul>
                       </div>
                 </div>
@@ -32,54 +30,30 @@
                         </div>
                     @endif
                     <div class="card-deck">
+                      @foreach($posts as $post)
                         <div class="card">
-                            <img src="{{asset('dist/img/blog.jpg')}}" style="width:100%;height:18rem;" alt="...">
+                            <img src="{{asset('/storage/images/'.$post->image)}}" class="card-img-top" alt="...">
                           <div class="card-body">
-                           <b> <h3 >Card title</h3></b>
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                            <a href="{{route('test')}}" class="btn btn-primary">Learn More</a>
+                           <b> <h3 >{{$post->title}}</h3></b>
+                            <p class="card-text">{{$post->description}}</p>
+                            <a href="#" class="btn btn-primary">Learn More</a>
                           </div>
                           <div class="card-footer" style="display: flex; align-items: center">
                                 <div class="image">
-                                  <img src="{{asset('dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" style="height:35px;width:35px;" alt="User Image">
+                                  <img src="{{asset('storage/images/'.$post->author->image)}}" class="img-circle elevation-2" style="height:35px;width:35px;" alt="User Image">
                                 </div>
-                                 <p style="margin:0px; margin-left:30px">{{Auth::user()->name}}</p>
+                                 <p style="margin:0px; margin-left:30px">{{$post->author->name}}</p>
                               </div>
                         </div>
-                        <div class="card">
-                          <img src="{{asset('dist/img/space.jpg')}}" style="width:100%;height:18rem;" alt="...">
-                          <div class="card-body">
-                           <b> <h3 >Card title</h3></b>
-                            <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-                            <a href="{{route('test')}}" class="btn btn-primary">Learn More</a>
-                          </div>
-                          <div class="card-footer" style="display: flex; align-items: center">
-                                <div class="image">
-                                  <img src="{{asset('dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" style="height:35px;width:35px;" alt="User Image">
-                                </div>
-                                 <p style="margin:0px; margin-left:30px">{{Auth::user()->name}}</p>
-                              </div>
-                        </div>
-                        <div class="card">
-                          <img src="{{asset('dist/img/nature.jpg')}}" style="width:100%;height:18rem;" alt="...">
-                          <div class="card-body">
-                           <b> <h3 >Card title</h3></b>
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-                            <a href="{{route('test')}}" class="btn btn-primary">Learn More</a>
-                          </div>
-                          <div class="card-footer" style="display: flex; align-items: center">
-                                <div class="image">
-                                  <img src="{{asset('dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" style="height:35px;width:35px;" alt="User Image">
-                                </div>
-                                 <p style="margin:0px; margin-left:30px">{{Auth::user()->name}}</p>
-                              </div>
-                        </div>
-                      </div>
-
-
+                        @endforeach
             </div>
-        </div>
+           </div>
+           <ul class="pagination justify-content-center">
+            {!!$posts->links('pagination::bootstrap-4')!!}
+          </ul>
     </div>
 </div>
+
 @endsection
+
 
