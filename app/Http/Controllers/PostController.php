@@ -79,10 +79,7 @@ class PostController extends Controller
         $data = $request->validated();
 
         if ($request->hasFile('image')) {
-            $file = $request->file('image');
-            $filename = $file->getClientOriginalName();
-            $file->storeAs('public/images/', $filename);
-            $post->image = $filename;
+            $post->image = $this->uploadImage($request->file('image'));
         }
 
         $post->author_id = $data['author'];
