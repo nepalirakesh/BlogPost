@@ -30,6 +30,9 @@ Route::get('/',[IndexController::class,'showFrontend'])->name('home');
 //Category post
 Route::get('home.cat/{id}',[IndexController::class,'getCategory'])->name('home.cat');
 
+//juery
+Route::post('/getCategory',[IndexController::class,'getCategory']);
+
 
 
 // ----------------Routes for Author------------------------------
