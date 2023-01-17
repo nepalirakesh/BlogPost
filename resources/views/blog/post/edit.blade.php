@@ -58,7 +58,9 @@
             <select class="form-control" name="tags[]" id="multiple_tag" multiple="" >
              
               @foreach($tags as $tag)
-                <option value="{{$tag->id}}">{{$tag->title}}</option>
+                  @foreach($post->tag as $pt)
+                <option value="{{$tag->id}}"{{$pt->id==$tag->id?'selected':''}}>{{$tag->title}}</option>
+                  @endforeach
             @endforeach
 
             </select>
