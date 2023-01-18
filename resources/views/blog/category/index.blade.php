@@ -18,7 +18,7 @@
                     <tr>
                         <td style="text-align:center">{{ $categories->firstItem() + $loop->index }}</td>
                         <td>{{ ucfirst($category->title) }}</td>
-                        <td>{{ ucfirst(Str::limit($category->description, 10)) }}</td>
+                        <td>{!! ucfirst(Str::limit($category->description, 10)) !!}</td>
                         <td>
                             <form action="{{ route('category.delete', $category) }}" method="POST">
                                 <a href="{{ route('category.show', $category) }}" class="btn btn-primary btn-sm">Show</a>

@@ -13,5 +13,4 @@
       </nav>
 @include('bloglayout.sidebar')
 @yield('content')
-
 @endsection

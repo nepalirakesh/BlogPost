@@ -11,7 +11,7 @@
                 <img src="{{ asset("storage/images/$post->image") }}" alt="" width="500px" height="300px">
                 <p>{{ ucfirst($post->description) }}</p>
                 <hr>
-                <p>{{ ucfirst($post->content) }}</p>
+                <p>{!! ucfirst($post->content) !!}</p>
             </div>
             @foreach ($post->tag as $tag)
                 <a href=""><span>#{{ $tag->title }}</span></a>

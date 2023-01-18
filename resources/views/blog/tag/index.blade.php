@@ -19,7 +19,7 @@
                     <tr>
                         <td style="text-align:center">{{ $tags->firstItem() + $loop->index }}</td>
                         <td>{{ ucfirst($tag->title) }}</td>
-                        <td>{{ ucfirst(Str::limit($tag->description, 10)) }}</td>
+                        <td>{!! ucfirst(Str::limit($tag->description, 10)) !!}</td>
                         <td>
                             <form action="{{ route('tag.delete', $tag) }}" method="POST">
                                 <a href="{{ route('tag.show', $tag) }}" class="btn btn-primary btn-sm">Show</a>
