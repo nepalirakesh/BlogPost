@@ -14,17 +14,25 @@
                 <center>
                     <img src="{{asset('storage/images/'.$posts->image)}}" class="card-img-top" style="height:auto;width:80%;" alt="...">
                 </center>
-                <div class="card-body">
+                <div class="card-body text-center">
 
                     <p>{{$posts->description}}</p>
+                    <p>{{$posts->content}}</p>
                 </div>
-
+                <div class="ml-4">
+                    @foreach($posts->tag as $pt)
+                    <span style="color:blue;">#{{$pt->title}}</span>
+                    @endforeach
+                </div>    
+            
+                
+                
                 <div class="card-footer" style="display: flex; align-items: center">
                     <div class="image">
                       <img src="{{asset('storage/images/'.$posts->author->image)}}" class="img-circle elevation-2" style="height:35px;width:35px;" alt="User Image">
                       <p class="font-italic">{{$posts->author->name}}</p>
                     </div>
-                     <p style="margin:0px; margin-left:30px">{{$posts->description}}</p>
+                     <p style="margin:0px; margin-left:30px">{{$posts->author->description}}</p>
                 </div>
 
 
