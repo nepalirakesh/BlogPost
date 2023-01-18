@@ -12,7 +12,7 @@ class Author extends Model
 
     
     protected $fillable =[
-        'name','description','image',
+        'name','description','image','email',
     ];
 
     public function post(){

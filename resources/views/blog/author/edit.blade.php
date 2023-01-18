@@ -1,51 +1,59 @@
 @extends('dashboard')
-
+@section('title', 'Edit Author')
 @section('content')
-<style>
-    .form{
-          margin: auto;
-        width: 50%;
-       
-        padding: 10px;
-      }
+    <div class="container w-50 mt-5">
+        <h3 class="text-center">Edit Author</h3>
+        <form class="p-3 border border-dark" action="{{ route('author.update', $author->id) }}" method="POST"
+            enctype="multipart/form-data">
+            @csrf
+            @method('put')
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" name="name" value="{{ $author->name }}">
+                <span style="color: red">
+                    @error('name')
+                        {{ $message }}
+                    @enderror
+                </span>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="text" class="form-control" id="email" name="email" value="{{ $author->email }}">
+                <span style="color: red">
+                    @error('email')
+                        {{ $message }}
+                    @enderror
+                </span>
+            </div>
+            <div class="form-group">
+                <label for="image">Image</label>
+                <br>
+                <img class="mb-2"src={{ asset("storage/images/$author->image") }} width="100px" height="100px"
+                    alt="">
+                <input type="file" class="form-control" id="image" name="image" onchange="loadFile(event)">
+                <span style="color: red">
+                    @error('image')
+                        {{ $message }}
+                    @enderror
+                </span>
+            </div>
+            <div id="show" style="display:none;">
+                <label for="preview">Image Preview</label><br>
+                <img id="preview" width="100px" height="100px"><br><br>
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea class="form-control" name="description" id="description" rows="3">{{ $author->description }}</textarea>
+                <span style="color: red">
+                    @error('description')
+                        {{ $message }}
+                    @enderror
+                </span>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Update</button>
 
-      .form-group{
-          margin: auto;
-       width: 50%;
-       border: 3px solid black;
-      padding: 10px;};
-</style>
-    <center><h1>Edit</h1></center>
-    
-    <form method="Post" action="{{route('author.update',$authors->id)}}" enctype="multipart/form-data">  
-    @method('PATCH')     
-     @csrf     
-              <div class="form-group">      
-                  <label for="Id">Id:</label><br/><br/>  
-                  <input type="number" name="id" value={{$authors->id}}><br/>
-                  
-                  <br/>  
-              
-      
-          
-                  <label for="Name">Name</label><br/><br/>  
-                  <input type="text" class="form-control" name="name" value={{$authors->name}}>
-                  <span style="color:red">@error('name'){{$message}}@enderror</span><br>
-                  <br/>  
-               
-          
-                  <label for="Image">Image</label><br/><br/>
-                  <img src="{{ url('public/images/'.$authors->image) }}" style="height: 100px; width: 150px;">  
-                  <input type="file" class="form-control" name="image" value={{$authors->image}}>
-                  <span style="color:red">@error('image'){{$message}}@enderror</span><br>
-          
-                  <label for="Description">Description</label><br/><br/>  
-                  <input type="text" class="form-control" name="description" value={{$authors->description}}>
-                  <span style="color:red">@error('description'){{$message}}@enderror</span><br>  
-               
-    <br/>  
-      
-        <button type="submit" class="btn btn-primary">Update</button>
-      </div>
-    </form> 
-    @endsection 
+            </div>
+        </form>
+    </div>
+@endsection

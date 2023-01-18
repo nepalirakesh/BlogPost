@@ -2,71 +2,50 @@
 
 namespace App\Http\Controllers;
 use App\Models\Category;
+use App\Http\Requests\CategoryRequest;
 
-use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    public function index(){
+    public function index()
+    {
+        $categories = Category::Paginate(4);
+        return view('blog.category.index', compact('categories'));
+    }
 
-
-        $categories= Category::Paginate(4);
-        return view('blog.category.index',compact('categories'))->with('i', (request()->input('page', 1) - 1) * 5);
+    public function show(Category $category)
+    {
+        return view('blog.category.show', compact('category'));
     }
 
 
-    public function show(Category $category){
-
-        return view('blog.category.show',compact('category'));
-
-
-    }
-
-
-    public function create(){
-
+    public function create()
+    {
         return view('blog.category.create');
     }
 
-
-
-
-    public function store(Request $request){
-
-        $request->validate([
-            'title'=>'required|unique:categories,title',
-            'description'=>'required',
-        ]);
-
+    public function store(CategoryRequest $request)
+    {
+        $date=$request->validated();
         Category::create($request->all());
-        return redirect()->route('category.index')->with('success','category created successfully');
+        return redirect()->route('category.index')->with('success', 'category created successfully');
     }
 
-
-
-
-    public function edit(Category $category){
-
-        return view('blog.category.edit',compact('category'));
+    public function edit(Category $category)
+    {
+        return view('blog.category.edit', compact('category'));
     }
 
-
-    public function update(Category $category,Request $request){
-
-        $request->validate([
-            'title'=>'required|unique:categories,title',
-            'description'=>'required',
-        ]);
-
+    public function update(Category $category, CategoryRequest $request)
+    {
+        $data=$request->validated();
         $category->update($request->all());
-        return redirect()->route('category.index')->with('update','category updated successfully');
+        return redirect()->route('category.index')->with('update', 'category updated successfully');
     }
 
-
-
-    public function delete(Category $category){
-
+    public function delete(Category $category)
+    {
         $category->delete();
-        return redirect()->route('category.index')->with('delete','category deleted successfully');
+        return redirect()->route('category.index')->with('delete', 'category deleted successfully');
     }
 }

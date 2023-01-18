@@ -39,7 +39,7 @@ Route::post('store',[AuthorController::class,'store'])->name('author.store');
 
 //edit for author
 Route::get('edit/{id}',[AuthorController::class,'edit'])->name('author.edit');
-Route::PATCH('update/{id}',[AuthorController::class,'update'])->name('author.update');
+Route::PUT('update/{id}',[AuthorController::class,'update'])->name('author.update');
 
 //delete for author
 Route::DELETE('delete/{id}',[AuthorController::class,'destroy'])->name('author.delete');
@@ -73,7 +73,7 @@ route::group(['prefix'=>'post','middleware'=>'auth'],function(){
 });
 
 
-// .........................Routes for post..................
+// .........................Routes for tag..................
 
 route::group(['prefix'=>'tag','middleware'=>'auth'],function(){
     route::get('/',[TagController::class,'index'])->name('tag.index');
