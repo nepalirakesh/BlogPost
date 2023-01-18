@@ -9,21 +9,25 @@ use App\Models\Author;
 use App\Models\Tag;
 use App\Models\Category;
 use Illuminate\Contracts\View\View;
+use App\Traits\ImageUpload;
+
 
 class PostController extends Controller
 {
+
+    use ImageUpload;
     /**
      * @return View
      */
+
     public function index()
     {
         $posts = Post::Paginate(4);
         return view('blog.post.index', compact('posts'));
+
     }
 
-    /**
-     * 
-     */
+    
     public function create(): View
     {
         $tags = Tag::all();
@@ -49,10 +53,7 @@ class PostController extends Controller
         $post->category_id = $data['category'];
 
         if ($request->hasFile('image')) {
-            $file = $request->file('image');
-            $filename = $file->getClientOriginalName();
-            $file->storeAs('public/images/', $filename);
-            $post->image = $filename;
+            $post->image = $this->uploadImage($request->file('image'));
         }
 
         $post->save();
@@ -79,10 +80,7 @@ class PostController extends Controller
         $data = $request->validated();
 
         if ($request->hasFile('image')) {
-            $file = $request->file('image');
-            $filename = $file->getClientOriginalName();
-            $file->storeAs('public/images/', $filename);
-            $post->image = $filename;
+            $post->image = $this->uploadImage($request->file('image'));
         }
 
         $post->author_id = $data['author'];
@@ -96,9 +94,15 @@ class PostController extends Controller
         return redirect()->route('post.index')->with('update', 'post updated successfully');
     }
 
+
+    
+
+    
     public function delete(Post $post)
     {
         $post->delete();
         return redirect()->route('post.index')->with('delete', 'post deleted successfully');
+
     }
+ 
 }

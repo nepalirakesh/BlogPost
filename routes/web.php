@@ -1,10 +1,17 @@
 <?php
 
+use App\Http\Controllers\IndexController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PostController;
+
+use App\Http\Controllers\IndexController;
+use App\Models\Category;
+use App\Models\Image;
+
 use App\Http\Controllers\TagController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -22,9 +29,15 @@ Route::get('/dashboard',function () {
 })->middleware('auth');
 
 
-Route::get('/',function () {
-    return view('home');
-})->name('home');
+Route::get('/',[IndexController::class,'showFrontend'])->name('home');
+
+//Category post
+Route::get('home/cat/{id}',[IndexController::class,'getCategory'])->name('home/cat');
+//single page post show
+Route::get('page-post/{id}', [IndexController::class, 'singlePostShow'])->name('page');
+
+//juery
+// Route::post('/getCategory',[IndexController::class,'getCategory']);
 
 
 
@@ -64,7 +77,7 @@ Route::group(['prefix'=>'category','middleware'=>'auth'],function(){
 
 route::group(['prefix'=>'post','middleware'=>'auth'],function(){
     route::get('/',[PostController::class,'index'])->name('post.index');
-    route::get('/create',[PostController::class,'create'])->name('post.create'); 
+    route::get('/create',[PostController::class,'create'])->name('post.create');
     route::post('/store',[PostController::class,'store'])->name('post.store');
     route::get('/show/{post}',[PostController::class,'show'])->name('post.show');
     route::get('/edit/{post}',[PostController::class,'edit'])->name('post.edit');
@@ -87,3 +100,6 @@ route::group(['prefix'=>'tag','middleware'=>'auth'],function(){
 
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+
