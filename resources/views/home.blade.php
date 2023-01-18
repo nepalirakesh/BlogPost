@@ -66,12 +66,10 @@
                     <div class="card-deck" id="card" style="">
                       @foreach($posts as $post)
                         <div class="card">
-                            <img src="{{asset('/storage/images/'.$post->image)}}" class="card-img-top" alt="..." id="post_image">
+                            <img src="{{asset('/storage/images/'.$post->image)}}" class="card-img-top" alt="..." id="post_image" style="width:350px;height:400px;">
                           <div class="card-body">
-                           <b> <h3 id="post_title">{{$post->title}}</h3></b>
-                            <p class="card-text" id="post_desc">{{ucfirst(Str::limit($post->description,100))
-                            }}</p>
-                            <a href="{{route('page',$post->id)}}" class="btn btn-primary">Learn More</a>
+                           <b> <h3 id="post_title">{{Str::limit($post->title,20) }}</h3></b>
+                            <p class="card-text" id="post_desc">{{ucfirst(Str::limit($post->description,100))}}<span><a href="{{route('page',$post->id)}}">See more</a></span></p>
                           </div>
                           <div class="card-footer" style="display:  flex; align-items: center">
                                 <div class="image">
