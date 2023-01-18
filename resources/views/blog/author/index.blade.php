@@ -26,7 +26,7 @@
                             <img src="{{ asset("storage/images/$author->image") }}" alt="" width="50px"
                                 height="50px">
                         </td>
-                        <td>{{ ucfirst(Str::limit($author->description, 10)) }}</td>
+                        <td>{!! ucfirst(Str::limit($author->description, 10)) !!}</td>
                         <td>
                             <form action="{{ route('author.delete', $author) }}" method="POST">
                                 <a href="{{ route('author.edit', $author) }}" class="btn btn-secondary btn-sm">Edit</a>

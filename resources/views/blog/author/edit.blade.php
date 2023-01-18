@@ -43,7 +43,7 @@
             </div>
             <div class="form-group">
                 <label for="description">Description</label>
-                <textarea class="form-control" name="description" id="description" rows="3">{{ $author->description }}</textarea>
+                <textarea class="form-control" id="my-editor" name="description" id="description" rows="3">{{ $author->description }}</textarea>
                 <span style="color: red">
                     @error('description')
                         {{ $message }}
@@ -57,3 +57,10 @@
         </form>
     </div>
 @endsection
+
+@push('scripts')
+<script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace('my-editor');
+    </script>
+@endpush

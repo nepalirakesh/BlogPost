@@ -6,7 +6,7 @@
         <div class="container border border-dark p-2 w-50">
             <h5> {{ $category->title }}</h5>
             <hr>
-            <p>{{ $category->description }}</p>
+            <p>{!! $category->description !!}</p>
         </div>
         <div class="container text-center p-2 w-50">
             <form action="{{ route('category.delete', $category) }}" method="POST">
