@@ -23,18 +23,17 @@ class PostRequest extends FormRequest
      */
     public function rules()
     {
-        $rules= [
-            'author'=>[
-            'required','integer'],
-            'title'=>['required','alpha_num'],
-            'description'=>['required'],
-            'content'=>['required'],
-            'image'=>['required','mimes:jpeg,png,jpg,gif,svg'],
-            'category'=>['required','integer'],
-            'tags'=>['required','array'],
+
+        $rules = [
+            'author' => 'required|integer',
+            'title' => 'required|string',
+            'description' => 'required',
+            'content' => 'required',
+            'image' => ($this->method() === 'PUT') ? 'mimes:jpeg,png,jpg,gif,svg' : 'required|mimes:jpeg,png,jpg,gif,svg',
+            'category' => 'required|integer',
+            'tags' => 'required|array',
         ];
 
         return $rules;
     }
-
 }

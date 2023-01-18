@@ -6,15 +6,16 @@
         <div class="container border border-dark p-2 w-50">
             <h5> {{ ucfirst($tag->title) }}</h5>
             <hr>
-            <p>{{ ucfirst($tag->description }}</p>
+            <p>{{ ucfirst($tag->description) }}</p>
         </div>
-        <div class="container p-2 w-50">
+        <div class="container text-center p-2 w-50">
             <form action="{{ route('tag.delete', $tag) }}" method="POST">
                 @csrf
                 @method('DELETE')
                 <a href="{{ route('tag.index') }}" class="btn btn-primary btn-sm">Index</a>
                 <a href="{{ route('tag.edit', $tag) }}" class="btn btn-secondary btn-sm">Edit</a>
-                <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                <button class="btn btn-danger btn-sm" type="submit"
+                    onclick="return confirm('Are you sure?')">Delete</button>
             </form>
         </div>
     </div>

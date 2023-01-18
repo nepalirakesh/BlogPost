@@ -25,25 +25,25 @@
                 data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
+                <li class="nav-item {{Request::routeIs('author.*')?'menu-open':''}}">
+                    <a href="#" class="nav-link {{Request::routeIs('author.*')?'active':''}}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
-                            Manage Author
+                            Manage Authors
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
 
-                        <li class="nav-item">
-                            <a href="{{ route('author.index') }}" class="nav-link">
+                        <li class="nav-item ">
+                            <a href="{{ route('author.index') }}" class="nav-link {{Request::routeIs('author.index')?'active':''}}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>List Author</p>
                             </a>
                         </li>
 
                         <li class="nav-item">
-                            <a href="{{ route('author.create') }}" class="nav-link">
+                            <a href="{{ route('author.create') }}" class="nav-link {{Request::routeIs('author.create')?'active':''}}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Create Author</p>
                             </a>
@@ -51,8 +51,8 @@
                     </ul>
                 </li>
 
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
+                <li class="nav-item {{Request::routeIs('post.*')?'menu-open':''}}">
+                    <a href="#" class="nav-link {{Request::routeIs('post.*')?'active':''}}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Manage Posts
@@ -61,13 +61,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href={{ route('post.index') }} class="nav-link">
+                            <a href={{ route('post.index') }} class="nav-link {{Request::routeIs('post.index')?'active':''}}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>List Post</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href={{ route('post.create') }} class="nav-link">
+                            <a href={{ route('post.create') }} class="nav-link {{Request::routeIs('post.create')?'active':''}}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Create Post</p>
                             </a>
@@ -76,8 +76,8 @@
                     </ul>
                 </li>
 
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
+                <li class="nav-item {{Request::routeIs('tag.*')?'menu-open':''}}">
+                    <a href="#" class="nav-link {{Request::routeIs('tag.*')?'active':''}}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Manage Tags
@@ -87,13 +87,13 @@
                     <ul class="nav nav-treeview">
 
                         <li class="nav-item">
-                            <a href="{{ route('tag.index') }}" class="nav-link">
+                            <a href="{{ route('tag.index') }}" class="nav-link {{Request::routeIs('tag.index')?'active':''}}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>List Tag</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href={{ route('tag.create') }} class="nav-link">
+                            <a href={{ route('tag.create') }} class="nav-link {{Request::routeIs('tag.create')?'active':''}}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Create Tag</p>
                             </a>
@@ -101,8 +101,8 @@
                     </ul>
                 </li>
 
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
+                <li class="nav-item {{Request::routeIs('category.*')?'menu-open':''}}">
+                    <a href="#" class="nav-link {{Request::routeIs('category.*')?'active':''}}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Manage Categories
@@ -111,13 +111,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ route('category.index') }}" class="nav-link">
+                            <a href="{{ route('category.index') }}" class="nav-link {{Request::routeIs('category.index')?'active':''}}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>List Category</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('category.create') }}" class="nav-link">
+                            <a href="{{ route('category.create') }}" class="nav-link {{Request::routeIs('category.create')?'active':''}}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Create Category</p>
                             </a>
