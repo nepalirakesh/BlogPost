@@ -14,7 +14,7 @@
 
 
 @yield('dashboard')
-
+@stack('scripts')
 @include('bloglayout.footer')
-  </body>
-  </html>
+</body>
+</html>

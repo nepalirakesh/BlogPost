@@ -17,7 +17,7 @@
             </div>
             <div class="form-group">
                 <label for="description">Description</label>
-                <textarea class="form-control" name="description" id="description" cols="" rows="3"
+                <textarea class="form-control" name="description" id="my-editor" cols="" rows="3"
                     placeholder="Enter Description">{{ old('description') }}</textarea>
                 <span style="color:red">
                     @error('description')
@@ -31,3 +31,11 @@
         </form>
     </div>
 @endsection
+@push('scripts')
+<script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace('my-editor');
+</script>
+@endpush
+
+

@@ -6,7 +6,7 @@
         <div class="container border border-dark p-2 w-50">
             <h5> {{ ucfirst($tag->title) }}</h5>
             <hr>
-            <p>{{ ucfirst($tag->description) }}</p>
+            <p>{!! ucfirst($tag->description) !!}</p>
         </div>
         <div class="container text-center p-2 w-50">
             <form action="{{ route('tag.delete', $tag) }}" method="POST">
