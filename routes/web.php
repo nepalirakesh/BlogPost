@@ -27,7 +27,7 @@ Route::get('/dashboard',function () {
 Route::get('/',[IndexController::class,'showFrontend'])->name('home');
 
 //Category post
-Route::get('home/cat/{id}',[IndexController::class,'getCategory'])->name('home/cat');
+Route::get('home/categories/{id}',[IndexController::class,'getCategory'])->name('home.cat');
 //single page post show
 Route::get('page-post/{id}', [IndexController::class, 'singlePostShow'])->name('page');
 

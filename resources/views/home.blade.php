@@ -13,7 +13,7 @@
                 <div class="card-header" style="display: flex; justify-content:space-between">
                     <div>
                     <h3>Welcome to BlogPost</h3></div>
-                    <div class="btn-group" style="margin-left:40em;">
+                    {{-- <div class="btn-group" style="margin-left:40em;">
                       <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="btn">
                         Category
                       </button>
@@ -33,19 +33,27 @@
                             @endforeach  
                           </select>
                         </div>
-                       </div>
-                       {{-- <div class="form-group" style="margin-left:40em;">
+                    </div> --}}
+                       <div class="form-group" style="margin-left:40em;">
                         
                         <label for="category">Category</label>
                        
-                          <select class="form-control" id="category" name="category" >
+                          <select class="form-control" id="category" name="category" onchange="handleSelect(event)">
                               <option selected disabled>--Select Category--</option>
                               @foreach($categories as $category)
-                              <option value={{$category->id}}>{{$category->title}}</option>
+                              <a href="{{route('home.cat',$category->id)}}">
+                              <option value={{$category->id}}  
+                                {{-- {{isset($cat)? $cat : ''}} --}}
+                                {{-- selected --}}
+                                {{isset($cat) ? ($cat === $category->id ? 'selected' : '') : '' }}
+                                >
+                                  {{$category->title}}
+                                </option>
+                              </a>
                               @endforeach
                           </select>
                       
-                      </div>  --}}
+                      </div> 
                 </div>
 
                 <div class="card-body">
@@ -84,7 +92,19 @@
             {!!$posts->links('pagination::bootstrap-4')!!}
           </ul>
     </div>
-</div>
+  </div>
+  {{-- window.location = `{{ url("home/categories/"+${id}) }}`; --}}
+  {{-- window.location = `home/categories/${id}`; --}}
+  
+  <script>
+    function handleSelect(event) {
+      var id = event.target.value;
+       const a = `home/categories/${id}`;
+       window.location.pathname = a; 
+     
+      
+  }
+</script>
 
 
 {{-- ////////////////ajax call simple value passing////////////// --}}
