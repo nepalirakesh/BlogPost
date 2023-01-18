@@ -28,10 +28,12 @@ Route::get('/dashboard',function () {
 Route::get('/',[IndexController::class,'showFrontend'])->name('home');
 
 //Category post
-Route::get('home.cat/{id}',[IndexController::class,'getCategory'])->name('home.cat');
+Route::get('home/cat/{id}',[IndexController::class,'getCategory'])->name('home/cat');
+//single page post show
+Route::get('page-post/{id}', [IndexController::class, 'singlePostShow'])->name('page');
 
 //juery
-Route::post('/getCategory',[IndexController::class,'getCategory']);
+// Route::post('/getCategory',[IndexController::class,'getCategory']);
 
 
 
@@ -81,6 +83,5 @@ route::group(['prefix'=>'post','middleware'=>'auth'],function(){
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-//Route for frontend
-Route::view('test','test');
+
 
