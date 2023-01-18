@@ -5,8 +5,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PostController;
-use App\Models\Category;
-use App\Models\Image;
 use App\Http\Controllers\TagController;
 
 
@@ -87,7 +85,7 @@ route::group(['prefix'=>'post','middleware'=>'auth'],function(){
 
 route::group(['prefix'=>'tag','middleware'=>'auth'],function(){
     route::get('/',[TagController::class,'index'])->name('tag.index');
-    route::get('/create',[TagController::class,'create'])->name('tag.create'); 
+    route::get('/create',[TagController::class,'create'])->name('tag.create');
     route::post('/store',[TagController::class,'store'])->name('tag.store');
     route::get('/show/{tag}',[TagController::class,'show'])->name('tag.show');
     route::get('/edit/{tag}',[TagController::class,'edit'])->name('tag.edit');
