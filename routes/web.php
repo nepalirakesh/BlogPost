@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\IndexController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\CategoryController;
@@ -76,7 +77,7 @@ Route::group(['prefix'=>'category','middleware'=>'auth'],function(){
 
 route::group(['prefix'=>'post','middleware'=>'auth'],function(){
     route::get('/',[PostController::class,'index'])->name('post.index');
-    route::get('/create',[PostController::class,'create'])->name('post.create'); 
+    route::get('/create',[PostController::class,'create'])->name('post.create');
     route::post('/store',[PostController::class,'store'])->name('post.store');
     route::get('/show/{post}',[PostController::class,'show'])->name('post.show');
     route::get('/edit/{post}',[PostController::class,'edit'])->name('post.edit');
@@ -99,7 +100,6 @@ route::group(['prefix'=>'tag','middleware'=>'auth'],function(){
 
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 
 
 

@@ -8,9 +8,11 @@ use App\Models\Author;
 use App\Models\Tag;
 use App\Models\Category;
 
+
 class IndexController extends Controller
 {
-    //
+
+
      //For Frontend of BlogPost
      public function showFrontend()
      {   $categories=Category::all();
@@ -33,13 +35,8 @@ class IndexController extends Controller
         }
 
         public function singlePostShow($id){
-
-
-
-            $posts = Post::find($id);
+             $posts = Post::find($id);
             $latest_post = Post::latest()->first();
-    
-    
     
             // $categories = Category::all();
             // $tags = Tag::all();
@@ -61,5 +58,6 @@ class IndexController extends Controller
     //             return response()->json(['posts' => $posts , 'categories' => $categories]);
     //     }
     // }
+
 
 }

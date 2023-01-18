@@ -54,9 +54,9 @@
                             {{ Session::get('success') }}
                         </div>
                     @endif
+
                     <div class="card-deck" id="card" style="">
                       @foreach($posts as $post)
-                      
                         <div class="card">
                             <img src="{{asset('/storage/images/'.$post->image)}}" class="card-img-top" alt="..." id="post_image">
                           <div class="card-body">
