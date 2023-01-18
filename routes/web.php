@@ -5,11 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PostController;
-
-use App\Http\Controllers\IndexController;
 use App\Models\Category;
 use App\Models\Image;
-
 use App\Http\Controllers\TagController;
 
 
