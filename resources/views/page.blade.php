@@ -17,7 +17,7 @@
                 <div class="card-body text-center">
 
                     <p>{{$posts->description}}</p>
-                    <p>{{$posts->content}}</p>
+                    <p>{!!$posts->content!!}</p>
                 </div>
                 <div class="ml-4">
                     @foreach($posts->tag as $pt)
