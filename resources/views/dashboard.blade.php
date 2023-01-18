@@ -1,8 +1,4 @@
 @extends('bloglayout.master')
-
-
-
-
 @section('dashboard')
 <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
@@ -17,4 +13,5 @@
       </nav>
 @include('bloglayout.sidebar')
 @yield('content')
+
 @endsection

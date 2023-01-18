@@ -84,5 +84,7 @@ class AuthorController extends Controller
         return redirect('author')->with('delete','Author Deleted Successfully');
     }
 
+    
+
 
 }

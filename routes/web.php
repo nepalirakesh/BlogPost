@@ -5,7 +5,13 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PostController;
+
+use App\Http\Controllers\IndexController;
+use App\Models\Category;
+use App\Models\Image;
+
 use App\Http\Controllers\TagController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -23,9 +29,15 @@ Route::get('/dashboard',function () {
 })->middleware('auth');
 
 
-Route::get('/',function () {
-    return view('home');
-})->name('home');
+Route::get('/',[IndexController::class,'showFrontend'])->name('home');
+
+//Category post
+Route::get('home/cat/{id}',[IndexController::class,'getCategory'])->name('home/cat');
+//single page post show
+Route::get('page-post/{id}', [IndexController::class, 'singlePostShow'])->name('page');
+
+//juery
+// Route::post('/getCategory',[IndexController::class,'getCategory']);
 
 
 
@@ -90,9 +102,4 @@ route::group(['prefix'=>'tag','middleware'=>'auth'],function(){
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-//Route for frontend
-// Route::view('frontend','home');
-// Route::view('test','test')->name('test');
-Route::get('frontend', [IndexController::class, 'index']);
-Route::get('test-post/{id}', [IndexController::class, 'singlePostShow'])->name('test');
 

@@ -14,19 +14,20 @@ use App\Traits\ImageUpload;
 
 class PostController extends Controller
 {
+
     use ImageUpload;
     /**
      * @return View
      */
+
     public function index()
     {
         $posts = Post::Paginate(4);
         return view('blog.post.index', compact('posts'));
+
     }
 
-    /**
-     *
-     */
+    
     public function create(): View
     {
         $tags = Tag::all();
@@ -93,9 +94,15 @@ class PostController extends Controller
         return redirect()->route('post.index')->with('update', 'post updated successfully');
     }
 
+
+    
+
+    
     public function delete(Post $post)
     {
         $post->delete();
         return redirect()->route('post.index')->with('delete', 'post deleted successfully');
+
     }
+ 
 }

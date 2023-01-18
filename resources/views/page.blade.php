@@ -6,7 +6,7 @@
         <div class="col-md-8"style="display: flex; justify-content:space-between">
             <div class="card">
                 <div class="card-header">
-                    <a href="{{url('frontend/')}}" type="button" class="btn btn-primary btn-sm float-right">Back</a>
+                    <a href="{{url('/')}}" type="button" class="btn btn-primary btn-sm float-right">Back</a>
                     <h3>{{ucfirst($posts->title)}}</h3>
 
 
