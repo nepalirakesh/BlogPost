@@ -14,9 +14,9 @@
                 <center>
                     <img src="{{asset('storage/images/'.$posts->image)}}" class="card-img-top" style="height:auto;width:80%;" alt="...">
                 </center>
-                <div class="card-body text-center">
+                <div class="card-body">
 
-                    <p>{{$posts->description}}</p>
+                    <p class="text-center">{{$posts->description}}</p>
                     <p>{!!$posts->content!!}</p>
                 </div>
                 <div class="ml-4">
