@@ -91,18 +91,15 @@
           </ul>
     </div>
   </div>
-  {{-- window.location = `{{ url("home/categories/"+${id}) }}`; --}}
-  {{-- window.location = `home/categories/${id}`; --}}
-  
-  <script>
+ <script>
     function handleSelect(event) {
       var id = event.target.value;
-       const a = `home/categories/${id}`;
-       window.location.pathname = a; 
-     
-      
-  }
+      var base_url = window.location.origin;
+      window.location = `${base_url}/home/categories/${id}`; 
+  
+    }
 </script>
+
 
 
 {{-- ////////////////ajax call simple value passing////////////// --}}
