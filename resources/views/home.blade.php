@@ -1,25 +1,26 @@
 @extends('layouts.app')
 
 @section('content')
-{{-- <script>
+    {{-- <script>
 
   const array = []
 </script> --}}
 
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card" style="width:150%;margin-left:-160px;" >
-                <div class="card-header" style="display: flex; justify-content:space-between">
-                    <div>
-                    <h3>Welcome to BlogPost</h3></div>
-                    {{-- <div class="btn-group" style="margin-left:40em;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card" style="width:150%;margin-left:-160px;">
+                    <div class="card-header" style="display: flex; justify-content:space-between">
+                        <div>
+                            <h3>Welcome to BlogPost</h3>
+                        </div>
+                        {{-- <div class="btn-group" style="margin-left:40em;">
                       <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="btn">
                         Category
                       </button>
                         <ul class="dropdown-menu" id="category" name="category">
                           <!-- dropdown menu links -->
-                          @foreach($categories as $category)
+                          @foreach ($categories as $category)
                           
                           <li id="category" class="dropdown-item"><a href="{{route('home/cat',$category['id'])}}" style="color:black;">{{$category->title}}</a></li>
                           @endforeach
@@ -28,82 +29,90 @@
 
                         <div class="form-group">
                           <select name="" id="" style="display:{{request()->is('/') ? 'none' : ''}}">
-                            @foreach($categories as $category)
+                            @foreach ($categories as $category)
                             <option value="" {{request()->id == $category->id ? 'selected disabled' : ''}}>{{$category->title}}</option>
                             @endforeach  
                           </select>
                         </div>
                     </div> --}}
-                       <div class="form-group" style="margin-left:40em;">
-                        
-                        <label for="category">Category</label>
-                       
-                          <select class="form-control" id="category" name="category" onchange="handleSelect(event)">
-                              <option selected disabled>--Select Category--</option>
-                              @foreach($categories as $category)
-                              <a href="{{route('home.cat',$category->id)}}">
-                              <option value={{$category->id}}  
-                                {{-- {{isset($cat)? $cat : ''}} --}}
-                                {{-- selected --}}
-                                {{isset($cat) ? ($cat === $category->id ? 'selected' : '') : '' }}
-                                >
-                                  {{$category->title}}
-                                </option>
-                              </a>
-                              @endforeach
-                          </select>
-                      
-                      </div> 
-                </div>
+                        <div class="form-group" style="margin-left:40em;">
 
-                <div class="card-body">
-                    @if (Session::has('success'))
-                        <div class="alert alert-success" role="alert">
-                            {{ Session::get('success') }}
+                            <label for="category">Category</label>
+
+                            <select class="form-control" id="category" name="category" onchange="handleSelect(event)">
+                                <option selected disabled>--Select Category--</option>
+                                @foreach ($categories as $category)
+                                    <a href="{{ route('home.cat', $category->id) }}">
+                                        <option value={{ $category->id }} {{-- {{isset($cat)? $cat : ''}} --}} {{-- selected --}}
+                                            {{ isset($cat) ? ($cat === $category->id ? 'selected' : '') : '' }}>
+                                            {{ $category->title }}
+                                        </option>
+                                    </a>
+                                @endforeach
+                            </select>
+
                         </div>
-                    @endif
+                    </div>
 
-                    <div class="card-deck" id="card" style="">
-                      @foreach($posts as $post)
-                        <div class="card">
-                            <img src="{{asset('/storage/images/'.$post->image)}}" class="card-img-top" alt="..." id="post_image" style="width:350px;height:400px;">
-                          <div class="card-body">
-                           <b> <h3 id="post_title">{{Str::limit($post->title,20) }}</h3></b>
-                            <p class="card-text" id="post_desc">{{ucfirst(Str::limit($post->description,100))}}<span><a href="{{route('page',$post->id)}}">See more</a></span></p>
-                          </div>
-                          <div class="card-footer" style="display:  flex; align-items: center">
-                                <div class="image">
-                                  <img src="{{asset('storage/images/'.$post->author->image)}}" class="img-circle elevation-2" style="height:35px;width:35px;" alt="User Image" id="author_image">
+                    <div class="card-body">
+                        @if (Session::has('success'))
+                            <div class="alert alert-success" role="alert">
+                                {{ Session::get('success') }}
+                            </div>
+                        @endif
+
+                        <div class="card-deck" id="card" style="">
+                            @foreach ($posts as $post)
+                                <div class="card">
+                                    <a href="{{ route('page', $post->id) }}"><img
+                                            src="{{ asset('/storage/images/' . $post->image) }}" class="card-img-top"
+                                            alt="..." id="post_image" style="width:350px;height:400px;">
+                                    </a>
+                                    <div class="card-body">
+                                        <a href="{{ route('page', $post->id) }}" style="color:black;"><b>
+                                                <h3 id="post_title">{{ Str::limit($post->title, 20) }}</h3>
+                                            </b> </a>
+                                        <p class="card-text" id="post_desc">
+                                            {{ ucfirst(Str::limit($post->description, 100)) }}<span><a
+                                                    href="{{ route('page', $post->id) }}">See more</a></span></p>
+                                    </div>
+                                    <div class="card-footer" style="display:  flex; align-items: center">
+                                        <div class="image">
+                                            <img src="{{ asset('storage/images/' . $post->author->image) }}"
+                                                class="img-circle elevation-2" style="height:35px;width:35px;"
+                                                alt="User Image" id="author_image">
+                                        </div>
+                                        <p style="margin:0px; margin-left:30px" id="author_name">{{ $post->author->name }}
+                                        </p>
+                                    </div>
                                 </div>
-                                 <p style="margin:0px; margin-left:30px" id="author_name">{{$post->author->name}}</p>
-                              </div>
+                            @endforeach
+
                         </div>
-                        @endforeach
-                        
+                        <div class="card-deck" id="card-deck" style="">
+
+                        </div>
+
+                    </div>
+                    <ul class="pagination justify-content-center">
+                        {!! $posts->links('pagination::bootstrap-4') !!}
+                    </ul>
+                </div>
             </div>
-            <div class="card-deck" id="card-deck" style="">
-             
-    </div>
-            
-           </div>
-           <ul class="pagination justify-content-center">
-            {!!$posts->links('pagination::bootstrap-4')!!}
-          </ul>
-    </div>
-  </div>
- <script>
-    function handleSelect(event) {
-      var id = event.target.value;
-      var base_url = window.location.origin;
-      window.location = `${base_url}/home/categories/${id}`; 
-  
-    }
-</script>
+
+            <script>
+                function handleSelect(event) {
+                    var id = event.target.value;
+                    var base_url = window.location.origin;
+                    window.location = `${base_url}/home/categories/${id}`;
+
+                }
+            </script>
 
 
 
-{{-- ////////////////ajax call simple value passing////////////// --}}
-{{-- <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+            {{-- ////////////////ajax call simple value passing////////////// --}}
+            {{-- <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
 <script>
 
   jQuery(document).ready(function() {
@@ -154,7 +163,4 @@
   });
 
 </script> --}}
-@endsection
-
-
-
+        @endsection
