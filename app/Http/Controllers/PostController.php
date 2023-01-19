@@ -12,6 +12,7 @@ use Illuminate\Contracts\View\View;
 use App\Traits\ImageUpload;
 
 
+
 class PostController extends Controller
 {
 
@@ -80,6 +81,7 @@ class PostController extends Controller
         $data = $request->validated();
 
         if ($request->hasFile('image')) {
+            $this->deleteImage($post->image);
             $post->image = $this->uploadImage($request->file('image'));
         }
 
@@ -100,6 +102,7 @@ class PostController extends Controller
     
     public function delete(Post $post)
     {
+       $this->deleteImage($post->image);
         $post->delete();
         return redirect()->route('post.index')->with('delete', 'post deleted successfully');
 
