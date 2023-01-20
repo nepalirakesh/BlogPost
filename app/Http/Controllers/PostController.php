@@ -27,7 +27,7 @@ class PostController extends Controller
 
     }
 
-    
+
     public function create(): View
     {
         $tags = Tag::all();
@@ -95,14 +95,14 @@ class PostController extends Controller
     }
 
 
-    
 
-    
+
+
     public function delete(Post $post)
     {
         $post->delete();
         return redirect()->route('post.index')->with('delete', 'post deleted successfully');
 
     }
- 
+
 }
