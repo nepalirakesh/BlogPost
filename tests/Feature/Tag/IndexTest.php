@@ -1,21 +1,22 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\Tag;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class ExampleTest extends TestCase
+class IndexTest extends TestCase
 {
     /**
-     * A basic test example.
+     * A basic feature test example.
      *
      * @return void
      */
-    public function test_example_200()
+    public function test_example()
     {
         $response = $this->get('/');
-        // dd($response->getStatusCode());
+
         $response->assertStatus(200);
     }
 }
