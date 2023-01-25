@@ -12,7 +12,7 @@ use App\Models\User;
 
 class PostControllerTest extends TestCase
 {
-    use RefreshDatabase;
+    // use RefreshDatabase;
     /**
      * Initial settings
      * @return void
@@ -26,22 +26,6 @@ class PostControllerTest extends TestCase
         $this->tags = Tag::factory()->create();
         $this->categories = Category::factory()->create();
         $this->authors = Author::factory()->create();
-
-    }
-    /**
-     * A basic feature test example.
-     *
-     * @return void
-     */
-    public function test_a_logged_in_user_can_create_a_new_post()
-    {
-        // create user
-        // $user =
-
-        // $this->actingAs($this->user);
-        // login user
-
-        // create a postd
 
     }
 
@@ -70,27 +54,7 @@ class PostControllerTest extends TestCase
                 'authors' => $authors,
                 'categories' => $categories
             ]);
-        // dd($response->getStatusCode());
+
     }
 
-    public function it_can_create_a_new_post()
-    {
-        $this->actingAs($this->user);
-
-        $post = [
-            'title' => 'Test Title',
-            'description' => 'Test Description',
-            'image' => 'test_image.jpg',
-            'content' => 'Test Content',
-            'author_id' => 1,
-            'category_id' => 2,
-            'tag_id' => 1
-        ];
-
-        $response = $this->post('/post', $post);
-
-        $response->assertStatus(201);
-        $response->assertJson(['title' => 'Test Title']);
-        $this->assertDatabaseHas('posts', $post);
-    }
 }
