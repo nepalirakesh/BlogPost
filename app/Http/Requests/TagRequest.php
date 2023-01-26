@@ -24,7 +24,7 @@ class TagRequest extends FormRequest
     public function rules()
     {
         return [
-            'title'=>'required',
+            'title'=>($this->method() === "PUT") ? 'required|string|unique:tags,title,' . $this->tag->id : 'required|string|unique:tags,title,',
             'description'=>'required|max:300|min:10'
         ];
     }
