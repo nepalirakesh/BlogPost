@@ -3,7 +3,6 @@
 namespace Tests\Feature\Category;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\User;
 use App\Models\Category;
@@ -17,6 +16,7 @@ class DeleteTest extends TestCase
 
    /**
     * Initial setup
+    * 
     * @return void
     */
     public function setUp(): void
@@ -28,9 +28,13 @@ class DeleteTest extends TestCase
 
     /**
      * @test
+     * 
      * @covers CategoryController::delete()
+     * 
      * Get request method should throw error for authenticated user
+     * 
      * Status 405
+     * 
      * @return void
      */
     public function get_request_should_throw_error_for_authenticated_user(): void
@@ -42,9 +46,13 @@ class DeleteTest extends TestCase
     }
     /**
      * @test
+     * 
      * @covers CategoryController::delete()
+     * 
      * Get request method should throw error for unauthenticated user
+     * 
      * Status 405
+     * 
      * @return void
      */
     public function get_request_should_throw_error_for_unauthenticated_user(): void
@@ -57,8 +65,11 @@ class DeleteTest extends TestCase
 
     /**
      * @test
+     * 
      * @covers CategoryController::store()
+     * 
      * Delete requested category with flash message
+     * 
      * Status 302
      * @return void
      */

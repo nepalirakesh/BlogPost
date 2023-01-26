@@ -3,7 +3,6 @@
 namespace Tests\Feature\Category;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\Category;
 use App\Models\User;
@@ -18,6 +17,7 @@ class IndexTest extends TestCase
 
     /**
      * Initial Setup
+     * 
      * @return void
      */
     public function setUp(): void
@@ -29,9 +29,13 @@ class IndexTest extends TestCase
 
     /**
      * @test
+     * 
      * @covers CategoryController::index()
+     * 
      * Unauthenticated user must be redirected to login page
+     * 
      * Status 302
+     * 
      * @return void
      */
     public function unauthenticated_user_redirected_to_login_page(): void
@@ -45,9 +49,13 @@ class IndexTest extends TestCase
 
     /**
      * @test
+     * 
      * @covers CategoryController::index()
+     * 
      * Authenticated user can view Category index page 
+     * 
      * Status 200
+     * 
      * @return void
      */
     public function authenticated_user_can_view_category_index_page(): void
@@ -64,9 +72,13 @@ class IndexTest extends TestCase
 
     /**
      * @test
+     * 
      * @covers AuthenticatesUsers::logout()
+     * 
      * Authenticated user is redirect to home page if logout successfully
+     * 
      * Status 302
+     * 
      * @return void
      */
     public function redirect_to_home_if_logout(): void

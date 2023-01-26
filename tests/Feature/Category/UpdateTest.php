@@ -5,7 +5,6 @@ namespace Tests\Feature\Category;
 use App\Models\Category;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use Illuminate\Support\Str;
 
@@ -19,6 +18,7 @@ class UpdateTest extends TestCase
 
     /**
      * Initial Setup
+     * 
      * @return void
      */
     public function setUp(): void
@@ -30,9 +30,13 @@ class UpdateTest extends TestCase
 
     /**
      * @test
+     * 
      * @covers CategoryController::update()
+     * 
      * Get request method will show error message for authenticated user
+     * 
      * Status 405
+     * 
      * @return void
      */
     public function get_request_shows_error_for_authenticated_user(): void
@@ -45,9 +49,13 @@ class UpdateTest extends TestCase
 
     /**
      * @test
+     * 
      * @covers CategoryController::update()
+     * 
      * Get request method will show error message for unauthenticated user
+     * 
      * Status 405
+     * 
      * @return void
      */
     public function get_request_shows_error_for_unauthenticated_user(): void
@@ -60,9 +68,13 @@ class UpdateTest extends TestCase
 
     /**
      * @test
+     * 
      * @covers CategoryController::update()
+     * 
      * Redirect to category index page with flash message for successful update
+     * 
      * Status 302
+     * 
      * @return void
      */
     public function redirect_to_category_index_with_flash_message(): void
@@ -84,10 +96,15 @@ class UpdateTest extends TestCase
 
     /**
      * @test 
+     * 
      * @covers CategoryController::update()
+     * 
      * @dataProvider updateValidation
+     * 
      * Show validation error message for invalid input
+     * 
      * Status 302
+     * 
      * @param $userInput,$field 
      */
     public function validate_category_update_request($userInput, $field): void
@@ -101,9 +118,13 @@ class UpdateTest extends TestCase
 
     /**
      * @test
+     * 
      * @covers CategoryController::update()
+     * 
      * Show unique field validation error for title field
+     * 
      * Status 302
+     * 
      * @return void
      */
     public function title_must_be_unique(): void
@@ -120,6 +141,7 @@ class UpdateTest extends TestCase
 
     /**
      * Validation test for update method of category
+     * 
      * @return array
      */
     public function updateValidation(): array

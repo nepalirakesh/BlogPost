@@ -3,7 +3,6 @@
 namespace Tests\Feature\Category;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\User;
 
@@ -14,6 +13,7 @@ class CreateTest extends TestCase
 
     /**
      * Initial Setup
+     * 
      * @return void
      */
     public function setUp(): void
@@ -30,6 +30,7 @@ class CreateTest extends TestCase
      * Unathenticated user will be redirected to login page.
      * 
      * Response 302
+     * 
      * @return void
      */
     public function unauthenticated_user_redirected_to_login_page(): void
@@ -43,9 +44,13 @@ class CreateTest extends TestCase
 
     /**
      * @test
+     *
      * @covers AuthenticatesUsers::logout()
+     * 
      * Authenticated user is redirect to home page if logout successfully
+     * 
      * Status 302
+     * 
      * @return void
      */
     public function redirect_to_home_if_logout(): void
@@ -58,9 +63,13 @@ class CreateTest extends TestCase
 
     /**
      * @test
+     * 
      * @covers CategoryController::create()
+     * 
      * Show form to create category if authenticated
+     * 
      * Response 200
+     * 
      * @return void
      */
     public function show_create_category_page_if_authenticated(): void
