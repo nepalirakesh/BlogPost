@@ -28,7 +28,7 @@ class PostController extends Controller
 
     }
 
-    
+
     public function create(): View
     {
         $tags = Tag::all();
@@ -97,9 +97,9 @@ class PostController extends Controller
     }
 
 
-    
 
-    
+
+
     public function delete(Post $post)
     {
        $this->deleteImage($post->image);
@@ -107,5 +107,5 @@ class PostController extends Controller
         return redirect()->route('post.index')->with('delete', 'post deleted successfully');
 
     }
- 
+
 }
