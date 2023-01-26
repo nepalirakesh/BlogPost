@@ -11,11 +11,13 @@ use App\Models\Category;
 class ShowTest extends TestCase
 {
     use RefreshDatabase;
+    
     private $user;
     private $category;
 
     /**
      * Initial Setup
+     * 
      * @return void
      */
     public function setUp(): void
@@ -27,9 +29,13 @@ class ShowTest extends TestCase
 
     /**
      * @test
+     * 
      * @covers CategoryController::show()
+     * 
      * Unauthenticated users are redirected to login page
+     * 
      * Status 302
+     * 
      * @return void
      */
     public function redirect_to_login_if_unauthenticated() : void
@@ -41,9 +47,13 @@ class ShowTest extends TestCase
 
     /**
      * @test
+     * 
      * @covers CategoryController::show()
+     * 
      * show requested  category if User is Authenticated
+     * 
      * Status 200
+     * 
      * @return void
      */
     public function show_category_if_authenticated() : void
@@ -60,9 +70,13 @@ class ShowTest extends TestCase
 
      /**
      * @test
+     * 
      * @covers AuthenticatesUsers::logout()
+     * 
      * Authenticated user is redirect to home page if logout successfully
+     * 
      * Status 302
+     * 
      * @return void
      */
     public function redirect_to_home_if_logout(): void

@@ -3,7 +3,6 @@
 namespace Tests\Feature\Category;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\User;
 use App\Models\Category;
@@ -16,6 +15,7 @@ class StoreTest extends TestCase
 
     /**
      * Intial Setup
+     * 
      * @return
      */
     public function setUp(): void
@@ -26,9 +26,13 @@ class StoreTest extends TestCase
 
     /**
      * @test
+     * 
      * @covers CategoryController::store()
+     * 
      * Get request method will throw error message for authenticated user
+     * 
      * Status 405
+     * 
      * @return void
      */
     public function get_request_shows_error_for_authenticated_user(): void
@@ -41,9 +45,13 @@ class StoreTest extends TestCase
 
     /**
      * @test
+     * 
      * @covers CategoryController::store()
+     * 
      * Get request method will throw error message for unauthenticated user
+     * 
      * Status 405
+     * 
      * @return void
      */
     public function get_request_shows_error_for_unauthenticated_user(): void
@@ -56,8 +64,11 @@ class StoreTest extends TestCase
 
     /**
      * @test
+     * 
      * @covers CategoryController::store()
+     * 
      * Redirect to index page of category with flash message if category created successfully
+     * 
      * Status 302
      */
     public function redirect_to_category_index_with_flash_message(): void
@@ -81,9 +92,13 @@ class StoreTest extends TestCase
 
     /**
      * @test
+     * 
      * @covers CatergoryController::store()
+     * 
      * Unique field validation for title field
+     * 
      * Status 302
+     * 
      * @return void
      */
     public function title_must_be_unique(): void
@@ -101,10 +116,15 @@ class StoreTest extends TestCase
 
     /**
      * @test 
+     * 
      * @covers CategoryController::store()
+     * 
      * @dataProvider categoryFormValidation
+     * 
      * Show validation error message for invalid input
+     * 
      * Status 302
+     * 
      * @param $userInput, $field
      */
     public function validate_category_input_request($userInput, $field): void
@@ -115,7 +135,8 @@ class StoreTest extends TestCase
     }
 
     /**
-     *Validation test for store method of category
+     * Validation test for store method of category
+     * 
      * @return array
      */
     public function categoryFormValidation(): array
