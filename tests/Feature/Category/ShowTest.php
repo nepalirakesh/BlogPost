@@ -10,6 +10,7 @@ use App\Models\Category;
 
 class ShowTest extends TestCase
 {
+    use RefreshDatabase;
     private $user;
     private $category;
 
