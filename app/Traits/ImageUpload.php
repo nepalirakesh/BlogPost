@@ -2,7 +2,7 @@
 
 namespace App\Traits;
 
-use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 trait ImageUpload
 {
@@ -16,9 +16,9 @@ trait ImageUpload
 
     public function deleteImage($file)
     {
-        $path = 'storage/images/' . $file;
-        if (File::exists($path)) {
-            File::delete($path);
+        $path = 'public/images/' . $file;
+        if (Storage::exists($path)) {
+            Storage::delete($path);
         }
     }
 }

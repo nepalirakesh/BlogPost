@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Models\Category;
+use GuzzleHttp\Psr7\Request;
 
 class CategoryRequest extends FormRequest
 {
@@ -23,9 +25,11 @@ class CategoryRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'title'=>'required',
-            'description'=>'required|max:300,min:10'
+        $rules = [
+            'title' => ($this->method() === "PUT") ? 'required|string|max:100|unique:categories,title,' . $this->category->id : 'required|string|max:100|unique:categories,title,',
+            'description' => 'required|max:300|min:10'
         ];
+
+        return $rules;
     }
 }
