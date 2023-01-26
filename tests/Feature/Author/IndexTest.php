@@ -19,18 +19,10 @@ class IndexTest extends TestCase
     private $user;
     private $categories;
 
-
     /**
-     * login route check
+     * Initial Setup
      *
      * @return void
-     */
-
-
-    /**
-     * 
-     *@test 
-     **
      */
     public function setUp(): void
     {
@@ -44,7 +36,9 @@ class IndexTest extends TestCase
 
     /**
      * @test
+     * 
      * @Covers Login check to view author index
+     * 
      * @return void
      */
     public function user_login_with_email_and_password(): void
@@ -61,15 +55,15 @@ class IndexTest extends TestCase
             ->assertStatus(200);
     }
 
-
     /**
      * @test
+     * 
      * @covers logout
+     * 
      * @return void
      */
     public function user_can_logout(): void
     {
-
         $this->actingAs($this->user)->post('/logout');
         $this->assertGuest();
     }

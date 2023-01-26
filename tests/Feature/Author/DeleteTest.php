@@ -2,17 +2,17 @@
 
 namespace Tests\Feature\Author;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
+
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 use Tests\TestCase;
 use App\Models\Tag;
 use App\Models\Category;
 use App\Models\User;
 use App\Models\Author;
-use Faker\Factory as Faker;
+
 
 class DeleteTest extends TestCase
 {
@@ -21,7 +21,11 @@ class DeleteTest extends TestCase
     private $users;
     private $categories;
 
-
+    /**
+     * Initial Setup
+     * 
+     * @return void
+     */
     public function setUp(): void
     {
         parent::setUp();
@@ -36,16 +40,20 @@ class DeleteTest extends TestCase
 
     /**
      * @test
+     * 
      * @covers AuthrController::delete
+     * 
      * User can delete an existing author
+     * 
      * Status code:302
+     * 
      * @return void
      */
 
     public function user_can_delete_author(): void
     {
         //Storing new Author through Author Controller
-        $filename = 'rakesh.jpg';
+        $filename = Str::random(8) . '.jpg';
         $this->actingas($this->users);
         $image = UploadedFile::fake()->image($filename);
         $email = $this->faker->unique()->email;
@@ -73,7 +81,7 @@ class DeleteTest extends TestCase
 
 
         //Checking whether the created author image exists in the storage folder
-        $this->assertFalse(File::exists('public/images/' . $author->image));
+        $this->assertFalse(Storage::exists('public/images/' . $author->image));
         $response->assertStatus(302);
     }
 }
