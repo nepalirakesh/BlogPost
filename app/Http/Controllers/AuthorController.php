@@ -15,7 +15,7 @@ class AuthorController extends Controller
     //For Index or Viewing
     public function show()
     {
-        $authors = Author::paginate(4);
+        $authors = Author::latest()->paginate(4);
         return view('blog/author/index', compact('authors'));
 
     }

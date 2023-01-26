@@ -16,7 +16,7 @@ use Faker\Factory as Faker;
 
 class CreateTest extends TestCase
 {
-    use WithFaker;
+    use WithFaker, RefreshDatabase;
 
     private $tags;
     private $users;

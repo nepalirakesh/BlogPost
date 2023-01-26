@@ -12,11 +12,11 @@ use App\Models\Tag;
 use App\Models\Category;
 use App\Models\User;
 use App\Models\Author;
-
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class DeleteTest extends TestCase
 {
-    use WithFaker;
+    use WithFaker, RefreshDatabase;
     private $tags;
     private $users;
     private $categories;

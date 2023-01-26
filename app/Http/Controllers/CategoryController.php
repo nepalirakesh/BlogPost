@@ -9,7 +9,7 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        $categories = Category::Paginate(4);
+        $categories = Category::latest()->Paginate(4);
         return view('blog.category.index', compact('categories'));
     }
 
