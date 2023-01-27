@@ -1,6 +1,7 @@
 <?php
 
 namespace Database\Factories;
+
 use App\Models\Tag;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -13,14 +14,14 @@ class TagFactory extends Factory
      * @return array
      */
 
-     protected $model=Tag::class;
+    protected $model = Tag::class;
 
 
-     public function definition()
+    public function definition()
     {
         return [
-            'title'=>$this->faker->title,
-            'description'=>$this->faker->text,
+            'title' => $this->faker->word,
+            'description' => $this->faker->sentence(3),
             //
         ];
     }
