@@ -21,7 +21,6 @@
                         <ul class="dropdown-menu" id="category" name="category">
                           <!-- dropdown menu links -->
                           @foreach ($categories as $category)
-
                           <li id="category" class="dropdown-item"><a href="{{route('home/cat',$category['id'])}}" style="color:black;">{{$category->title}}</a></li>
                           @endforeach
 
@@ -64,12 +63,23 @@
                         <div class="card-deck" id="card" style="">
                             @foreach ($posts as $post)
                                 <div class="card">
-                                    <img src="{{ asset('/storage/images/' . $post->image) }}" class="card-img-top"
+
+                                    <a href="{{ route('page', $post->id) }}"><img
+                                            src="{{ asset('/storage/images/' . $post->image) }}" class="card-img-top"
+                                            alt="..." id="post_image" style="width:350px;height:400px;">
+                                    </a>
+                                    <div class="card-body">
+                                        <a href="{{ route('page', $post->id) }}" style="color:black;"><b>
+                                                <h3 id="post_title">{{ Str::limit($post->title, 20) }}</h3>
+                                            </b> </a>
+
+                                    {{-- <img src="{{ asset('/storage/images/' . $post->image) }}" class="card-img-top"
                                         alt="..." id="post_image" style="width:350px;height:400px;">
                                     <div class="card-body">
                                         <b>
                                             <h3 id="post_title">{{ Str::limit($post->title, 20) }}</h3>
-                                        </b>
+                                        </b> --}}
+
                                         <p class="card-text" id="post_desc">
                                             {{ ucfirst(Str::limit($post->description, 100)) }}<span><a
                                                     href="{{ route('page', $post->id) }}">See more</a></span></p>
@@ -88,6 +98,7 @@
 
                         </div>
                         <div class="card-deck" id="card-deck" style="">
+
                         </div>
 
                     </div>
@@ -96,18 +107,17 @@
                     </ul>
                 </div>
             </div>
-            {{-- window.location = `{{ url("home/categories/"+${id}) }}`; --}}
-            {{-- window.location = `home/categories/${id}`; --}}
+
 
             <script>
                 function handleSelect(event) {
                     var id = event.target.value;
-                    const a = `home/categories/${id}`;
-                    window.location.pathname = a;
-
+                    var base_url = window.location.origin;
+                    window.location = `${base_url}/home/categories/${id}`;
 
                 }
             </script>
+
 
 
             {{-- ////////////////ajax call simple value passing////////////// --}}

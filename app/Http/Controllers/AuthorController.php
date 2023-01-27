@@ -15,7 +15,7 @@ class AuthorController extends Controller
     //For Index or Viewing
     public function show()
     {
-        $authors = Author::paginate(4);
+        $authors = Author::latest()->paginate(4);
         return view('blog/author/index', compact('authors'));
 
     }
@@ -47,7 +47,6 @@ class AuthorController extends Controller
     public function edit($id)
      {
         $author = Author::find($id);
-        // dd($author);
         return view('blog/author/edit', ['author' => $author]);
     }
 
@@ -62,6 +61,7 @@ class AuthorController extends Controller
 
       if($request->file('image'))
        {
+        $this->deleteImage($author->image);
         $author->image = $this->uploadImage($request->file('image'));
 
        }
@@ -74,7 +74,10 @@ class AuthorController extends Controller
     //For deleting an author
     public function destroy($id)
     {
-        Author::find($id)->delete();
+        
+        $author = Author::find($id);
+        $this->deleteImage($author->image);
+        $author->delete();
         return redirect('author')->with('delete', 'Author Deleted Successfully');
     }
 }

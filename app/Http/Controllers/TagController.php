@@ -13,7 +13,7 @@ class TagController extends Controller
      *  @return \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory
      */
     public function index(){
-        $tags=Tag::Paginate(4);
+        $tags=Tag::latest()->Paginate(4);
         return view('blog.tag.index',compact('tags'));
     }
 
