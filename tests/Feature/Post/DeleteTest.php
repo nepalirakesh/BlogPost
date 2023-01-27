@@ -10,8 +10,11 @@ use Tests\TestCase;
 
 class DeleteTest extends TestCase
 {
+    use RefreshDatabase;
     /**
      * @test
+     *
+     * @group  postcontroller
      *
      * Summary of testDeletePost
      * @return void

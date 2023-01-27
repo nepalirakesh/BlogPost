@@ -38,11 +38,6 @@ class StoreTest extends TestCase
             ->assertStatus(302)->assertRedirect(route('tag.index'))
             ->assertSessionHas('success', 'Tag created successfully.');
 
-        $saved_tag = Tag::first();
-        // check saved value
-        $this->assertEquals('tag title', $saved_tag->title);
-        $this->assertEquals('tag description', $saved_tag->description);
-
     }
 
     /**

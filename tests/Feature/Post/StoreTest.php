@@ -18,6 +18,7 @@ class StoreTest extends TestCase
     use RefreshDatabase;
     /**
      * @test
+     * @group  postcontroller
      *
      *@covers PostController::store()
      *

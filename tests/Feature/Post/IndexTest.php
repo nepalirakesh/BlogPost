@@ -20,6 +20,8 @@ class IndexTest extends TestCase
     private $user;
     /**
      * @test
+     *
+     * @group  postcontroller
      * @covers PostController::index()
      *
      * Summary of test_a_logged_in_user_can_create_a_new_post

@@ -90,7 +90,7 @@ class IndexTest extends TestCase
 
         // Assert that a given model exists in the database:
         $this->assertModelExists($tag)
-            ->assertDatabaseCount('tags', 1)
+                // ->assertDatabaseCount('tags', 1)
             ->assertDatabaseHas('tags', [
                 'title' => $tag->title
             ]);

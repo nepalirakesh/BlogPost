@@ -14,13 +14,22 @@ use App\Models\Post;
 
 class CreateTest extends TestCase
 {
+    use RefreshDatabase;
+    /**
+     * @test
+     *
+     * @group  postcontroller
+     *
+     * Summary of a_logged_in_user_can_view_create_form
+     * @return void
+     */
     public function a_logged_in_user_can_view_create_form()
     {
         $user = User::factory()->create();
 
-        $response = $this->get(route('post.create'))
+        $response = $this->actingAs($user)->get(route('post.create'))
             ->assertStatus(200)
-            ->assertViewIs('blod.post.create')
+            ->assertViewIs('blog.post.create')
             ->assertViewHas(['tags', 'categories', 'authors']);
     }
 }
