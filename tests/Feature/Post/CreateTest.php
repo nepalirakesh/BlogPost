@@ -3,14 +3,8 @@
 namespace Tests\Feature\Post;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
-use App\Models\Author;
-use App\Models\Tag;
-use App\Models\Category;
-use App\Models\user;
-use App\Models\Post;
-
+use App\Models\User;
 
 class CreateTest extends TestCase
 {
@@ -21,6 +15,7 @@ class CreateTest extends TestCase
      * @group  postcontroller
      *
      * Summary of a_logged_in_user_can_view_create_form
+     * 
      * @return void
      */
     public function a_logged_in_user_can_view_create_form()
