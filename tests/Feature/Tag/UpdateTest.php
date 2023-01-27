@@ -11,39 +11,11 @@ use App\Models\User;
 
 class UpdateTest extends TestCase
 {
-    // use RefreshDatabase;
+    use RefreshDatabase;
     /**
      * @test
+     * @group tagcontroller
      * @covers TagController::update()
-     *
-     * Summary of tag_can_be_updated
-     * @return void
-     */
-    public function tag_can_be_updated()
-    {
-        $faker = Faker::create();
-
-        $tag = new Tag([
-            'title' => $faker->word,
-            'description' => $faker->sentence()
-        ]);
-        $tag->save();
-
-        // update tag
-        $tag->title = $faker->word;
-        $tag->description = $faker->sentence;
-        $tag->save();
-
-        // testing updated tag by it's id
-
-        $updatedTag = Tag::find($tag->id);
-        $this->assertEquals($tag->title, $updatedTag->title);
-        $this->assertEquals($tag->description, $updatedTag->description);
-
-    }
-    //OR
-    /**
-     * @test
      * Summary of a_logged_in_user_can_update_tag
      * @return void
      */
@@ -84,7 +56,6 @@ class UpdateTest extends TestCase
         $this->assertEquals('test title updated', $updated_tag->title);
         $this->assertEquals('test description updated', $updated_tag->description);
         $this->assertModelExists($updated_tag);
-
 
     }
 }

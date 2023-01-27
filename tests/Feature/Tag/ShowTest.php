@@ -10,11 +10,16 @@ use App\Models\Tag;
 
 class ShowTest extends TestCase
 {
+    use RefreshDatabase;
+
     private $user;
     /**
      * @test
      *
+     * @group tagcontroller
+     *
      * Summary of show_the_single_tag_view
+     *
      * @return void
      */
     public function show_the_single_tag_view()
@@ -30,7 +35,6 @@ class ShowTest extends TestCase
             'title' => $tag->title,
             'description' => $tag->description
         ]);
-
 
     }
 }

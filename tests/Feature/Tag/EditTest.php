@@ -3,15 +3,18 @@
 namespace Tests\Feature\Tag;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\User;
 use App\Models\Tag;
 
 class EditTest extends TestCase
 {
+    use RefreshDatabase;
+
     /**
      * @test
+     *
+     * @group tagcontroller
      *
      * A basic feature test example.
      *
@@ -24,6 +27,7 @@ class EditTest extends TestCase
         $response = $this->actingAs($user)->get(route('tag.edit', $tag->id));
 
         $response->assertStatus(200)->assertViewIs('blog.tag.edit')
+            ->assertViewHas('tag')
             ->assertSee(['Title', 'Update']);
     }
 }

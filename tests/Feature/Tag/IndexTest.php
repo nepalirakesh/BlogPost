@@ -16,21 +16,22 @@ class IndexTest extends TestCase
      * @test
      *
      * Summary of if_user_is_not_logined_redirect_to_login_page
+     *
      * @return void
      */
     public function if_user_is_not_logined_redirect_to_login_page()
     {
         $response = $this->get('/tag');
         $response->assertRedirect('/login');
-
-
-
     }
+
     /**
      * @test
+     *
      * @covers TagController::index()
      *
      * Summary of it_can_show_tag_with_required_data
+     *
      * @return void
      */
     public function it_can_show_tag_with_required_data()
@@ -42,10 +43,11 @@ class IndexTest extends TestCase
         $this->get($url)
             ->assertStatus(200)
             ->assertViewIs('blog.tag.index');
-
     }
+
     /**
      * @test
+     *
      * @covers TagController::index()
      *
      * Summary of test_case_for_tag_read
@@ -54,7 +56,6 @@ class IndexTest extends TestCase
      */
     public function case_for_reading_tag()
     {
-
         $faker = Faker::create();
         $tag = new Tag([
             'title' => $faker->word,
@@ -73,10 +74,14 @@ class IndexTest extends TestCase
         $this->assertEquals($tag->description, $readTag->description);
 
     }
+
     /**
      * @test
      *
+     * @group tagcontroller
+     *
      * Summary of check_tags_table
+     *
      * @return void
      */
     public function check_existance_of_tag_model()
@@ -89,7 +94,6 @@ class IndexTest extends TestCase
             ->assertDatabaseHas('tags', [
                 'title' => $tag->title
             ]);
-
-
     }
+
 }
