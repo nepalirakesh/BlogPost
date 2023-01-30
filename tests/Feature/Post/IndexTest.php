@@ -11,6 +11,7 @@ use App\Models\Author;
 use App\Models\Tag;
 use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Storage;
 
 
 
@@ -37,8 +38,10 @@ class IndexTest extends TestCase
             ->assertStatus(200)
             ->assertViewIs('blog.post.index')
             ->assertViewHas('posts');
-        // dd($response->getStatusCode());
-
+        
+            if(Storage::exists('public/images/'.$posts->image)){
+                Storage::delete('public/images/'.$posts->image);
+            }
 
     }
 }

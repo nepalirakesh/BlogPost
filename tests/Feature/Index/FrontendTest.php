@@ -7,6 +7,7 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\Category;
 use App\Models\Post;
+use Illuminate\Support\Facades\Storage;
 
 
 class FrontendTest extends TestCase
@@ -39,6 +40,16 @@ class FrontendTest extends TestCase
         $response = $this->assertGuest()->get('/')->assertStatus(200);
         $response->assertViewIs('home')
             ->assertViewHas(['posts', 'categories']);
+            
+            $allPost = Post::all();
+        
+            foreach($allPost as $post){
+                if(Storage::exists('public/images/'.$post->image)){
+                    Storage::delete('public/images/'.$post->image);
+                }
+        }
+
+   
     }
 
     /**
@@ -62,6 +73,14 @@ class FrontendTest extends TestCase
                 'cat'
             ]
         );
+        
+        $allPost = Post::all();
+
+        foreach($allPost as $post){
+            if(Storage::exists('public/images/'.$post->image)){
+                Storage::delete('public/images/'.$post->image);
+            }
+    }
     }
 
     /**
@@ -82,5 +101,14 @@ class FrontendTest extends TestCase
             ->assertViewHasAll([
                 'posts' => $posts,
             ]);
-    }
+     
+            $allPost = Post::all();
+
+            foreach($allPost as $post){
+                if(Storage::exists('public/images/'.$post->image)){
+                    Storage::delete('public/images/'.$post->image);
+                }
+        }
+        }
+
 }

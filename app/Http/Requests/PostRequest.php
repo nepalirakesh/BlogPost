@@ -25,13 +25,13 @@ class PostRequest extends FormRequest
     {
 
         $rules = [
-            'author' => 'required|integer',
-            'title' => 'required|string',
+            'author_id'   => 'required|integer',
+            'title'       => 'required|string',
             'description' => 'required|min:30|max:150',
-            'content' => 'required|min:100',
-            'image' => ($this->method() === 'PUT') ? 'mimes:jpeg,png,jpg,gif,svg' : 'required|mimes:jpeg,png,jpg,gif,svg',
-            'category' => 'required|integer',
-            'tags' => 'required|array',
+            'content'     => 'required|min:100',
+            'image'       => ($this->method() === 'PUT') ? 'mimes:jpeg,png,jpg,gif,svg' : 'required|mimes:jpeg,png,jpg,gif,svg',
+            'category_id' => 'required|integer',
+            'tags'        => 'required|array',
         ];
 
         return $rules;

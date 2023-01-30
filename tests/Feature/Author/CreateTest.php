@@ -102,6 +102,10 @@ class CreateTest extends TestCase
             'image' => $filename,
             'description' => $description
         ]);
+
+        if(Storage::exists('public/images/'.$filename)){
+            Storage::delete('public/images/'.$filename);
+        }
     }
 
 
@@ -134,6 +138,10 @@ class CreateTest extends TestCase
 
         $response = $this->post('/store', $UserInput);
         $response->assertSessionHasErrors($field);
+
+        if(Storage::exists('public/images/image.jpg')){
+            Storage::delete('public/images/image.jpg');
+        }
     }
 
     /**

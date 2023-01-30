@@ -42,12 +42,12 @@
 <!-- AdminLTE App -->
 <script src="
 {{ asset('dist/js/adminlte.js') }}"></script>
-<!-- AdminLTE for demo purposes -->
+{{-- <!-- AdminLTE for demo purposes -->
 <script src="
 {{ asset('dist/js/demo.js') }}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="
-{{ asset('dist/js/pages/dashboard.js') }}"></script>
+{{ asset('dist/js/pages/dashboard.js') }}"></script> --}}
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script>
     $(document).ready(function() {

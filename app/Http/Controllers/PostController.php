@@ -25,7 +25,6 @@ class PostController extends Controller
     {
         $posts = Post::latest()->Paginate(4);
         return view('blog.post.index', compact('posts'));
-
     }
 
 
@@ -47,18 +46,18 @@ class PostController extends Controller
         $data = $request->validated();
 
         $post = new Post;
-        $post->author_id = $data['author'];
+        $post->author_id = $data['author_id'];
         $post->title = $data['title'];
         $post->description = $data['description'];
         $post->content = $data['content'];
-        $post->category_id = $data['category'];
+        $post->category_id = $data['category_id'];
 
         if ($request->hasFile('image')) {
             $post->image = $this->uploadImage($request->file('image'));
         }
 
         $post->save();
-        $post->tag()->attach($request->tags);
+        $post->tags()->attach($request->tags);
 
         return redirect()->route('post.index')->with('success', 'post added successfully');
     }
@@ -85,27 +84,21 @@ class PostController extends Controller
             $post->image = $this->uploadImage($request->file('image'));
         }
 
-        $post->author_id = $data['author'];
+        $post->author_id = $data['author_id'];
         $post->title = $data['title'];
         $post->description = $data['description'];
         $post->content = $data['content'];
-        $post->category_id = $data['category'];
+        $post->category_id = $data['category_id'];
         $post->save();
-        $post->tag()->sync($request->tags);
+        $post->tags()->sync($request->tags);
 
         return redirect()->route('post.index')->with('update', 'post updated successfully');
     }
 
-
-
-
-
     public function delete(Post $post)
     {
-       $this->deleteImage($post->image);
+        $this->deleteImage($post->image);
         $post->delete();
         return redirect()->route('post.index')->with('delete', 'post deleted successfully');
-
     }
-
 }

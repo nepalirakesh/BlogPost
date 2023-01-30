@@ -62,7 +62,7 @@
 
                         <div class="card-deck" id="card" style="">
                             @foreach ($posts as $post)
-                                <div class="card">
+                                <div class="col-md-4">
 
                                     <a href="{{ route('page', $post->id) }}"><img
                                             src="{{ asset('/storage/images/' . $post->image) }}" class="card-img-top"

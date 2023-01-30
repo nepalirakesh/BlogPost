@@ -20,7 +20,7 @@
                     <p>{!! ucfirst($posts->content) !!}</p>
                 </div>
                 <div class="ml-4">
-                    @foreach($posts->tag as $pt)
+                    @foreach($posts->tags as $pt)
                     <span style="color:blue;">#{{$pt->title}}</span>
                     @endforeach
                 </div>

@@ -7,10 +7,10 @@
             @csrf
             <div class="form-group">
                 <label for="Author">Author</label>
-                <select class="form-control" id="Author" name="author">
+                <select class="form-control" id="Author" name="author_id">
                     <option disabled selected>Select Author</option>
                     @foreach ($authors as $author)
-                        <option value="{{ $author->id }}" {{ old('author') == $author->id ? 'selected' : '' }}>
+                        <option value="{{ $author->id }}" {{ old('author_id') == $author->id ? 'selected' : '' }}>
                             {{ $author->name }}</option>
                     @endforeach
                 </select>
@@ -65,10 +65,10 @@
             </div>
             <div class="form-group">
                 <label for="category">Category</label>
-                <select class="form-control" id="category" name="category">
+                <select class="form-control" id="category" name="category_id">
                     <option disabled selected>Select Category</option>
                     @foreach ($categories as $category)
-                        <option value={{ $category->id }} {{ old('category') == $category->id ? 'selected' : '' }}>
+                        <option value={{ $category->id }} {{ old('category_id') == $category->id ? 'selected' : '' }}>
                             {{ $category->title }}</option>
                     @endforeach
                 </select>

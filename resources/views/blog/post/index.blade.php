@@ -25,7 +25,7 @@
                         <td>{{ ucfirst($post->author->name) }}</td>
                         <td>{{ ucfirst($post->category->title) }}</td>
                         <td>
-                            @foreach ($post->tag as $tag)
+                            @foreach ($post->tags as $tag)
                                 <span class="badge rounded-pill bg-dark">{{ ucfirst($tag->title) }}</span>
                             @endforeach
                         </td>
