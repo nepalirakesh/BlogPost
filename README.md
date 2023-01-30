@@ -11,12 +11,13 @@
 - There is no login or register button inside Home Page as it is a Personal Blogpost.
 - To create Admin we must enter the URL http://localhost:8000/register and provide name and email to register the admin.
 - After regisration admin will be directed to dashboard.
+- Admin can vist dashboard with http://localhost:8000/dashboard.
 - On dashboard Admin can see Manage Author/Posts/Tags/Categories menu
 - Inside each menu  there List Authors/Category/Tags/Post and Create  Author/Posts/Tags/Categories menu items.
 - First of all we have to create Author,Tags,Category then we can create Post .
 - There is a Home link on the navbar inside dashboard form where we can go to Home page.
 - If somehow guest use try to access the dashboard or URl for managing Author/Posts/Tags/Categories they will be redirected to login page.
-
+<br><br>
 
 
 
@@ -33,6 +34,7 @@
 - PHP version 7.3 or greater is required as this project runs on Laravel 8
 - Web server like Apache or XAMPP installed and configured, and a database management system like MySQL, PostgreSQL, or SQLite.
 - Dependency manager (Composer) is required.
+ <br><br>
 
                     
 # Installation
