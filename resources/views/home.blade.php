@@ -60,13 +60,13 @@
                             </div>
                         @endif
 
-                        <div class="card-deck" id="card" style="">
+                        <div class="card-deck" id="card" style="text-align:center;">
                             @foreach ($posts as $post)
-                                <div class="col-md-4">
+                                <div class="col-md-4 mb-3">
 
                                     <a href="{{ route('page', $post->id) }}"><img
                                             src="{{ asset('/storage/images/' . $post->image) }}" class="card-img-top"
-                                            alt="..." id="post_image" style="width:350px;height:400px;">
+                                            alt="..." id="post_image" style="width:250px;height:300px;">
                                     </a>
                                     <div class="card-body">
                                         <a href="{{ route('page', $post->id) }}" style="color:black;"><b>
@@ -81,10 +81,10 @@
                                         </b> --}}
 
                                         <p class="card-text" id="post_desc">
-                                            {{ ucfirst(Str::limit($post->description, 100)) }}<span><a
+                                            {{ ucfirst(Str::limit($post->description, 50)) }}<span><a
                                                     href="{{ route('page', $post->id) }}">See more</a></span></p>
                                     </div>
-                                    <div class="card-footer" style="display:  flex; align-items: center">
+                                    <div class="card-footer " style="display:  flex; align-items: center ;">
                                         <div class="image">
                                             <img src="{{ asset('storage/images/' . $post->author->image) }}"
                                                 class="img-circle elevation-2" style="height:35px;width:35px;"
@@ -94,7 +94,9 @@
                                         </p>
                                     </div>
                                 </div>
+                                
                             @endforeach
+                            
 
                         </div>
                         <div class="card-deck" id="card-deck" style="">
