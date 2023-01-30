@@ -9,7 +9,7 @@
             @method('PUT')
             <div class="form-group">
                 <label for="Author">Author</label>
-                <select class="form-control" id="Author" name="author">
+                <select class="form-control" id="Author" name="author_id">
                     <option>{{ $post->author->name }}</option>
                     @foreach ($authors as $author)
                         <option value={{ $author->id }} {{ $post->author_id == $author->id ? 'selected' : '' }}>
@@ -68,7 +68,7 @@
                 </div>
                 <div class="form-group">
                     <label for="category">Category</label>
-                    <select class="form-control" id="category" name="category">
+                    <select class="form-control" id="category" name="category_id">
                         <option>{{ $post->category->title }}</option>
                         @foreach ($categories as $category)
                             <option value={{ $category->id }} {{ $post->category_id == $category->id ? 'selected' : '' }}>
@@ -85,7 +85,7 @@
                     <label for="multiple_tag">Tag</label>
                     <select class="form-control" name="tags[]" id="multiple_tag" multiple="">
                         @foreach ($tags as $tag)
-                            @foreach ($post->tag as $pt)
+                            @foreach ($post->tags as $pt)
                                 <option value="{{ $tag->id }}"{{ $pt->id == $tag->id ? 'selected' : '' }}>
                                     {{ $tag->title }}</option>
                             @endforeach

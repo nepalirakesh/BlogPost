@@ -138,6 +138,10 @@ class EditTest extends TestCase
         ]);
 
         $response->assertStatus(302);
+
+        if(Storage::exists('public/images/'.$imagefile)){
+            Storage::delete('public/images/'.$imagefile);
+        }
     }
 
 

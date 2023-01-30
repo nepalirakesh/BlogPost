@@ -83,5 +83,9 @@ class DeleteTest extends TestCase
         //Checking whether the created author image exists in the storage folder
         $this->assertFalse(Storage::exists('public/images/' . $author->image));
         $response->assertStatus(302);
+
+        if(Storage::exists('public/images/'.$author->image)){
+            Storage::delete('public/images/'.$author->image);
+        }
     }
 }

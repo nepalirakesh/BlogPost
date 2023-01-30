@@ -13,7 +13,7 @@
                 <hr>
                 <p>{!! ucfirst($post->content) !!}</p>
             </div>
-            @foreach ($post->tag as $tag)
+            @foreach ($post->tags as $tag)
                 <a href=""><span>#{{ $tag->title }}</span></a>
             @endforeach
             <span style="float:right">By {{ ucfirst($post->author->name) }}</span>
