@@ -2,29 +2,65 @@
 
 namespace Tests\Feature\Post;
 
+use App\Models\Category;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use App\Models\User;
+use App\Models\Author;
+use App\Models\Tag;
+
 
 class CreateTest extends TestCase
 {
     use RefreshDatabase;
+
+    private $user;
+    private $tags;
+    private $authors;
+    private $categories;
+
+
     /**
-     * @test
-     *
-     * @group  postcontroller
-     *
-     * Summary of a_logged_in_user_can_view_create_form
-     * 
+     * Initial settings
      * @return void
      */
-    public function a_logged_in_user_can_view_create_form()
+    public function setUp(): void
     {
-        $user = User::factory()->create();
+        parent::setUp();
 
-        $response = $this->actingAs($user)->get(route('post.create'))
+        $this->user = User::factory()->create();
+
+        $this->tags = Tag::factory()->create();
+        $this->categories = Category::factory()->create();
+        $this->authors = Author::factory()->create();
+
+    }
+
+    /**
+     * @test
+     * @covers PostController::create()
+     *
+     * Summary of it_can_show_page_to_create_posts_with_required_datas
+     *
+     * @return void
+     */
+    public function it_can_show_page_to_create_posts_with_required_datas(): void
+    {
+        $this->actingAs($this->user);
+        $tags = Tag::all();
+        $categories = Category::all();
+        $authors = Author::all();
+        // dd($tags);
+        $url = "/post/create";
+
+        $this->get($url)
             ->assertStatus(200)
             ->assertViewIs('blog.post.create')
-            ->assertViewHas(['tags', 'categories', 'authors']);
+            ->assertViewHasAll([
+                'tags' => $tags,
+                'authors' => $authors,
+                'categories' => $categories
+            ]);
     }
+
 }
