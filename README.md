@@ -1,8 +1,23 @@
 # Personal Blogpost
 
 - This is a simple personal Blogpost project built with **Laravel 8**. 
-- It allows authenticated users to create, read, update, and delete posts.
+- Admin user can create, read, update, and delete posts.
+- Normal user can view posts.
 <br><br><br>
+
+# Installation Prerequiste
+- Git
+     ### For Window operating system
+      - Download git for window from official site.
+      https://git-scm.com/download/win
+
+
+     ### For Linux operating system 
+      - sudo yum install git -y
+
+- PHP >= 7.3
+- Web server like Apache or XAMPP installed and configured, and a database management system like MySQL, PostgreSQL, or SQLite.
+- Dependency manager for PHP
 
                     
 # Installation
@@ -31,6 +46,10 @@
 - Run the migrations:
 
        php artisan migrate
+       
+-Storage Link
+
+       php artisan storage:link
 
 - Start the development server: 
 
