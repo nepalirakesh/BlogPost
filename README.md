@@ -13,7 +13,7 @@
 
 
      ### For Linux operating system 
-      - sudo yum install git -y
+        sudo yum install git -y
 
 - PHP >= 7.3
 - Web server like Apache or XAMPP installed and configured, and a database management system like MySQL, PostgreSQL, or SQLite.
