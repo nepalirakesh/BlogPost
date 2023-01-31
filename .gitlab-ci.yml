@@ -1,10 +1,19 @@
 stages:
   - build
+  - push
 
-
-image: docker:20.10.12
+push to ec2:
+  stage: push
+  image: registry.gitlab.com/gitlab-org/cloud-deploy/aws-base:latest
   services:
-    - docker:20.10.12-dind
+    - name: docker:dind
+  variables:
+    SSH_PRIVATE_KEY: $SSH_PRIVATE_KEY
+  before_script:
+    - apt install -y openssh-client
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" | ssh-add -
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
   script:
-    - docker build -t my-app .
-
+    - ssh -o StrictHostKeyChecking=no ec2-user@13.233.110.117 "sudo yum update -y"
