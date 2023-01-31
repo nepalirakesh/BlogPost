@@ -3,7 +3,7 @@
 @section('content')
     @include('bloglayout.crudmessage')
     <div class="container text-center mt-5">
-        <h3>Blog Category</h3>
+        <h3>Categories</h3>
         <table class="table container text-center w-50">
             <thead class="thead-dark">
                 <tr>
