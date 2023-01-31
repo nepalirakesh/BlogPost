@@ -35,6 +35,18 @@ class CreateTest extends TestCase
         $this->authors = Author::factory()->create();
 
     }
+    /**
+     * @test
+     *
+     * Summary of if_user_is_not_logged_in_can_not_see_create_page
+     * @return void
+     */
+    public function if_user_is_not_logged_in_can_not_see_create_page()
+    {
+        $response = $this->get(route('post.create'));
+        $response->assertStatus(302)
+            ->assertRedirect(route('login'));
+    }
 
     /**
      * @test

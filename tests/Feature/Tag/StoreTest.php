@@ -3,15 +3,23 @@
 namespace Tests\Feature\Tag;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\User;
-use App\Models\Tag;
-use Faker\Factory as Faker;
 
 class StoreTest extends TestCase
 {
     use RefreshDatabase;
+    private $user;
+    /**
+     * Initial setup
+     * @return void
+     */
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->user = User::factory()->create();
+
+    }
 
     /**
      * @test
@@ -26,18 +34,14 @@ class StoreTest extends TestCase
      */
     public function a_logged_in_user_can_create_a_new_tag()
     {
-        $faker = Faker::create();
-        $user = User::factory()->create();
-
         $tag = [
             'title' => 'tag title',
             'description' => 'tag description',
         ];
 
-        $response = $this->actingAs($user)->post(route('tag.store'), $tag)
+        $this->actingAs($this->user)->post(route('tag.store'), $tag)
             ->assertStatus(302)->assertRedirect(route('tag.index'))
             ->assertSessionHas('success', 'Tag created successfully.');
-
     }
 
     /**
@@ -58,7 +62,7 @@ class StoreTest extends TestCase
     public function tag_validation(array $data, bool $expected)
     {
         $user = User::factory()->create();
-        $response = $this->actingAs($user)->post(route('tag.store'), $data);
+        $response = $this->actingAs($this->user)->post(route('tag.store'), $data);
 
         if ($expected) {
             $response->assertSessionHasNoErrors();

@@ -3,7 +3,6 @@
 namespace Tests\Feature\Tag;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use Faker\Factory as Faker;
 use App\Models\Tag;
@@ -12,6 +11,17 @@ use App\Models\User;
 class IndexTest extends TestCase
 {
     use RefreshDatabase;
+    private $user;
+    /**
+     * Summary of setUp
+     * @return void
+     */
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->user = User::factory()->create();
+
+    }
     /**
      * @test
      *
@@ -21,7 +31,8 @@ class IndexTest extends TestCase
      */
     public function if_user_is_not_logined_redirect_to_login_page()
     {
-        $response = $this->get('/tag');
+        $response = $this->get('/tag')
+            ->assertStatus(302);
         $response->assertRedirect('/login');
     }
 
@@ -36,14 +47,14 @@ class IndexTest extends TestCase
      */
     public function it_can_show_tag_with_required_data()
     {
-        $user = User::factory()->create();
-        $this->actingAs($user);
+        $this->actingAs($this->user);
         $url = "/tag";
 
         $this->get($url)
             ->assertStatus(200)
             ->assertViewIs('blog.tag.index');
     }
+
 
     /**
      * @test

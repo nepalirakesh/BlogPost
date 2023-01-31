@@ -10,6 +10,33 @@ use App\Models\Tag;
 class EditTest extends TestCase
 {
     use RefreshDatabase;
+    private $user;
+    private $tag;
+    /**
+     * Initial Setup
+     * Summary of setUp
+     * @return void
+     */
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->user = User::factory()->create();
+        $this->tag = Tag::factory()->create();
+    }
+    /**
+     * @test
+     *
+     * Summary of guest_user_can_not_view_edit_form
+     * @return void
+     */
+    public function guest_user_can_not_view_edit_form()
+    {
+        $response = $this->get(route('tag.edit', $this->tag->id));
+
+        $response->assertStatus(302)
+            ->assertRedirect(route('login'));
+    }
+
 
     /**
      * @test
@@ -22,9 +49,7 @@ class EditTest extends TestCase
      */
     public function a_logged_in_user_can_view_edit_form()
     {
-        $user = User::factory()->create();
-        $tag = Tag::factory()->create();
-        $response = $this->actingAs($user)->get(route('tag.edit', $tag->id));
+        $response = $this->actingAs($this->user)->get(route('tag.edit', $this->tag->id));
 
         $response->assertStatus(200)->assertViewIs('blog.tag.edit')
             ->assertViewHas('tag')

@@ -3,15 +3,19 @@
 namespace Tests\Feature\Tag;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
-use Faker\Factory as Faker;
 use App\Models\Tag;
 use App\Models\User;
 
 class UpdateTest extends TestCase
 {
     use RefreshDatabase;
+    private $user;
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->user = User::factory()->create();
+    }
     /**
      * @test
      * @group tagcontroller
@@ -22,19 +26,16 @@ class UpdateTest extends TestCase
 
     public function a_logged_in_user_can_update_tag()
     {
-        // create user
-        $user = User::factory()->create();
-
         // login user
-        $response = $this->post('login', [
-            'email' => $user->email,
+        $this->post('login', [
+            'email' => $this->user->email,
             'password' => 'password'
         ]);
 
         $this->assertAuthenticated();
 
         // create a tag
-        $response = $this->from(route('tag.create'))
+        $this->from(route('tag.create'))
             ->post(route('tag.store'), [
                 'title' => 'test title',
                 'description' => 'test description'
@@ -43,7 +44,7 @@ class UpdateTest extends TestCase
         // update tag
         $tag = Tag::first();
 
-        $response = $this->put(route('tag.update', $tag->id), [
+        $this->put(route('tag.update', $tag->id), [
             'title' => 'test title updated',
             'description' => 'test description updated'
         ]);

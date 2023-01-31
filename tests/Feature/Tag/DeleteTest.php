@@ -3,7 +3,6 @@
 namespace Tests\Feature\Tag;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\Tag;
 use App\Models\User;
@@ -11,6 +10,17 @@ use App\Models\User;
 class DeleteTest extends TestCase
 {
     use RefreshDatabase;
+    private $user;
+    /**
+     * Initial Setup
+     * Summary of setUp
+     * @return void
+     */
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->user = User::factory()->create();
+    }
 
     /**
      * @group tagcontroller
@@ -24,12 +34,9 @@ class DeleteTest extends TestCase
 
     public function a_login_user_can_delete_tag()
     {
-        // create user
-        $user = User::factory()->create();
-
         // login user
         $response = $this->post('login', [
-            'email' => $user->email,
+            'email' => $this->user->email,
             'password' => 'password'
         ]);
 
@@ -45,6 +52,6 @@ class DeleteTest extends TestCase
         $tag = Tag::first();
 
         // delete post
-        $response = $this->delete(route('tag.delete', $tag->id));
+        $this->delete(route('tag.delete', $tag->id));
     }
 }
