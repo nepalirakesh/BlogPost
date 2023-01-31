@@ -17,7 +17,7 @@ class IndexController extends Controller
     public function showFrontend()
     {
         $categories = Category::all();
-        $posts = Post::latest()->Paginate(7);
+        $posts = Post::latest()->Paginate(9);
         return view('home', compact('posts', 'categories'));
     }
 
