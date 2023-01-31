@@ -96,6 +96,8 @@ WORKDIR /var/www
 
 # Change the owner of the container document root
 RUN chown -R www-data:www-data /var/www
+RUN chmod +s /var/www/
+RUN chmod g+s /var/www
 
 
 # Start Apache in foreground

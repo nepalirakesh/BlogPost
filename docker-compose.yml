@@ -1,12 +1,12 @@
 version: "3"
 services:
     app:
-        build: .
+        build: ./docker
         image: php-app
         ports:
-            - "8000:8000"
+            - "8000:80"
         volumes:
-            - .:/app
+            - ./:/var/www
 
     db:
         image: mariadb
@@ -19,6 +19,5 @@ services:
             - MYSQL_PASSWORD=root
         volumes:
             - mysql-data:/var/lib/mysql
-
 volumes:
     mysql-data:

@@ -1,0 +1,10 @@
+stages:
+  - build
+
+
+image: docker:20.10.12
+  services:
+    - docker:20.10.12-dind
+  script:
+    - docker build -t my-app .
+
