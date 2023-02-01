@@ -10,7 +10,7 @@ variables:
   REPOSITORY_NAME: dummy-repository
   APP_VERSION: $CI_PIPELINE_IID
 
-build image and push to ecr:
+build image:
   stage: build
   image: registry.gitlab.com/gitlab-org/cloud-deploy/aws-base:latest
   services:
@@ -19,39 +19,54 @@ build image and push to ecr:
     - docker build -t $DOCKER_REGISTRY/$REPOSITORY_NAME:$APP_VERSION ./docker
     - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $DOCKER_REGISTRY
     - docker push $DOCKER_REGISTRY/$REPOSITORY_NAME:$APP_VERSION
-# 1) ssh into ec2 instance.
-# 2) fetch image from amazon ecr to ec2 instance.
-# 3) fetch gitlab repository to ec2 instance.
-# 4) deploy the application
-# deploy image:
-#   stage: deploy
-#   image: registry.gitlab.com/gitlab-org/cloud-deploy/aws-base:latest
-#   services:
-#     - name: docker:dind
-#   script:
-#     - apt install -y openssh-client
-#     - eval $(ssh-agent -s)
-#     - echo "$EC2_SSH_PRIVATE_KEY" | ssh-add -
-#     - mkdir -p ~/.ssh
-#     - chmod 700 ~/.ssh
-#     - |
-#       ssh -o StrictHostKeyChecking=no ec2-user@43.204.23.164 "
-#       sudo yum update
-#       sudo yum install -y git docker
-#       sudo systemctl start docker
-#       export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID AWS_DEFAULT_REGION=$AWS_DEFAULT_REGION AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
-#       aws ecr get-login-password --region $AWS_DEFAULT_REGION | sudo docker login --username AWS --password-stdin
-#       sudo docker pull $DOCKER_REGISTRY/$REPOSITORY_NAME:$APP_VERSION
-#       "
+
 deploy image:
   stage: deploy
   image: registry.gitlab.com/gitlab-org/cloud-deploy/aws-base:latest
   services:
     - name: docker:dind
-  script:
+  variables:
+    EC2_INSTANCE_URL: $EC2_INSTANCE_URL
+  before_script:
+    # Install OpenSSH client
     - apt install -y openssh-client
+    # Start the ssh-agent and add the private key
     - eval $(ssh-agent -s)
     - echo "$EC2_SSH_PRIVATE_KEY" | ssh-add -
+    # Create the .ssh directory and set permissions
     - mkdir -p ~/.ssh
     - chmod 700 ~/.ssh
-    - ssh -o StrictHostKeyChecking=no ec2-user@43.204.23.164 "ssh -T git@gitlab.com"
+    # Connect to the EC2 instance and install dependencies
+    - |
+      ssh -o StrictHostKeyChecking=no ec2-user@$EC2_INSTANCE_URL "
+        sudo yum update
+        sudo yum install -y git docker
+        sudo systemctl start docker
+        sudo systemctl enable docker
+        which docker-compose | grep /usr/local/bin/docker-compose || sudo curl -L https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
+        sudo chmod +x /usr/local/bin/docker-compose
+        sudo usermod -a -G docker ec2-user
+        sudo reboot
+      " || true
+    - sleep 20
+  script:
+    # Connect to the EC2 instance and deploy the app
+    - |
+      ssh -o StrictHostKeyChecking=no ec2-user@$EC2_INSTANCE_URL "
+        export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID AWS_DEFAULT_REGION=$AWS_DEFAULT_REGION AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
+        aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $DOCKER_REGISTRY
+        docker pull $DOCKER_REGISTRY/$REPOSITORY_NAME:$APP_VERSION
+        ssh -T git@gitlab.com | grep 'Welcome to GitLab, @sanjeevbhusal\!'
+        if [ -d php-internship-project ]; then sudo rm -rd php-internship-project; fi
+        git clone git@gitlab.com:sanjeevbhusal/php-internship-project.git
+        cd php-internship-project
+        git switch devops-trail
+        docker-compose down
+        docker tag $DOCKER_REGISTRY/$REPOSITORY_NAME:$APP_VERSION php-app
+        docker-compose up -d
+        cp .env.example .env
+        docker-compose exec app composer install
+        docker-compose exec app php artisan key:generate
+        docker-compose exec app php artisan migrate
+        docker-compose exec app chown -R www-data:www-data /var/www/app
+      "

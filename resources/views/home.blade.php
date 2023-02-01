@@ -12,7 +12,7 @@
                 <div class="card" style="width:150%;margin-left:-160px;">
                     <div class="card-header" style="display: flex; justify-content:space-between">
                         <div>
-                            <h3>Welcome to BlogPost</h3>
+                            <h3>Welcome to BlogPost Again</h3>
                         </div>
                         {{-- <div class="btn-group" style="margin-left:40em;">
                       <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="btn">

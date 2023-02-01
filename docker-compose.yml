@@ -4,9 +4,9 @@ services:
         build: ./docker
         image: php-app
         ports:
-            - "8000:80"
+            - "80:80"
         volumes:
-            - ./:/var/www
+            - ./:/var/www/app
 
     db:
         image: mariadb
