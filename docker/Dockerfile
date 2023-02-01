@@ -26,14 +26,14 @@ RUN sh ./install-composer.sh \
     && rm ./install-composer.sh
 
 # Change the current working directory
-WORKDIR /var/www
+WORKDIR /var/www/app
 
 # Change the owner of the container document root
-RUN chgrp -R www-data /var/www
-RUN chmod g+s /var/www
+RUN chown -R www-data:www-data /var/www/app
+# RUN chmod g+s /var/www/app/
 
-RUN find /var/www -type d -exec chgrp www-data {} +
-RUN find /var/www -type d -exec chmod g+s {} +
+# RUN find /var/www -type d -exec chgrp www-data {} +
+# RUN find /var/www -type d -exec chmod g+s {} +
 
 
 # Start Apache in foreground
